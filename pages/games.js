@@ -9,29 +9,30 @@ import mockData from '../mock/games.json'
 
 import styles from '../styles/GameCard.module.css';
 import 'react-circular-progressbar/dist/styles.css';
+import getGames from '../db/getGames';
 
 const GameCard = ({game})=>{
-    game.rating = game.rating > game.rating_top ? game.rating_top : game.rating;
+    const total_rating = game.total_rating.toPrecision(4);
     return (
         <div className={styles.gameCardContainer}>
             <div className={styles.gameCard}>
                 <div className={`${styles.gameCardFace} ${styles.gameCardFront}`}>
-                    <img className={styles.gameImage} src={game.background_image}/>
-                    <h3 className={styles.gameTitle}>{game.name}</h3>
+                    <img className={styles.gameImage} src={`https:${game.cover.url}`}/>
                 </div>
                 <div 
                     className={`${styles.gameCardFace} ${styles.gameCardBack}`}
                     style={{
                         color: 'white',
-                        backgroundColor: '#'+game.dominant_color
+                        backgroundColor: '#131313'
                     }}    
-                >
+                >                    
+                    <h3 className={styles.gameTitle}>{game.name}</h3>
                     <CircularProgressbar
-                        className={styles.gameProgressBar}
-                        value   ={game.rating}
-                        maxValue={game.rating_top}
-                        text    ={`${game.rating}/${game.rating_top}`}
-                        strokeWidth={4}
+                        className  = {styles.gameProgressBar}
+                        value      = {total_rating}
+                        maxValue   = {100}
+                        text       = {total_rating}
+                        strokeWidth= {4}
                         styles={buildStyles({
                             textColor:      '#BF55EC',
                             pathColor:      '#BF55EC',
@@ -39,8 +40,10 @@ const GameCard = ({game})=>{
                             strokeLinecap:  'butt'
                         })}
                     />
-                    <Link href={`/game/${game.id}`} className={styles.gameCardSeeMore}>
-                        SEE MORE...
+                    <Link href={`/game/${game.id}`} >
+                        <p className={styles.gameCardSeeMore}>
+                            SEE MORE...
+                        </p>
                     </Link>
                 </div>
             </div>
@@ -56,7 +59,7 @@ const Game = ({data}) => {
             </h2>
             <div className={styles.container}>
                 {
-                    data.results.map((el, i) =>
+                    data.map((el, i) =>
                         <GameCard key={el.id} game={el}/>
                     )
                 }  
@@ -70,25 +73,7 @@ export default Game;
 
 export async function getStaticProps (context) {
     try{
-
-        let data = mockData;
-        if( process.env.NODE_ENV === 'production' ){
-            const url = new URL('https://rawg-video-games-database.p.rapidapi.com/games');
-            url.searchParams.append('key', '847717b6d5eb4fe1a333cc055e5982cc');
-            
-            const options = {
-                method: 'GET',
-                url: url.href,
-                headers: {
-                'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
-                'x-rapidapi-key': '6dbb228c76mshcbdc9145a9d4c47p14899cjsn05a3ea0860bf'
-                }
-            };
-            
-            const res = await axios.request(options);
-
-            data = res.data;
-        }
+        const data = await getGames();
 
         return {
           props: { data }, // will be passed to the page component as props

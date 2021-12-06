@@ -22,7 +22,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
 }
 
 .container{
@@ -73,16 +72,17 @@
     display:            flex;
     width:              100%;
     height:             100%;
-    justify-content:    center;
+    flex-flow:          column nowrap;
     align-items:        center;
+    gap:                100px;
     transform:          rotateY(180deg);
 }
 
+.gameCardBack > *{
+    flex: 1 0 0;
+}
+
 .gameTitle{
-    position:   absolute;
-    bottom:     0;
-    left:       0;
-    width:      100%;
     text-align: center;
     color:      white;
     font-size:  1.6em;
@@ -99,14 +99,10 @@
 }
 
 .gameProgressBar{
-    height: 160px;
+    flex: 0 0 160px;
 }
 
 .gameCardSeeMore{
-    position:   absolute;
-    left:       0;
-    bottom:     0;
-    width:      100%;
     text-align: center;
     color:      #BF55EC;
     -webkit-touch-callout:  none;

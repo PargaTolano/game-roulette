@@ -2,6 +2,8 @@
   --third: calc(100% / 3);
   --sixth: calc(100% / 6);
   --fourthirds: calc( var(--third) * 4 / 3  );
+  --box-art-width: 300px;
+  --box-art-height: calc( 1.5 * var(--box-art-width) )
 }
 
 html,
@@ -22,4 +24,6 @@ a {
 
 * {
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
