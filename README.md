@@ -1,34 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Game Roulette #
 
-## Getting Started
+Game Roulette is a next-js app/ website where you can select a random game from a certain collection and see a lot of useful info on it. The game data is brought using the [IGDB API](https://api-docs.igdb.com).
 
-First, run the development server:
+## Installation ##
+
+Use git clone to clone the repository in the desired directory.
 
 ```bash
-npm run dev
-# or
-yarn dev
+    git clone https://github.com/PargaTolano/game-roulette.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+After that, navigate to the directory via bash
+```bash
+    cd game-roulette
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Install the node dependencies necessary to run the project via npm or yarn.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+#### npm ####
+```bash
+    npm install
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
 
-## Learn More
+#### yarn ####
+```bash
+    yarn
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Running ##
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+In order to run the project you need to build it first via npm or yarn.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### npm ####
+```bash
+    npm run build
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### yarn ####
+```bash
+    yarn run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Run it with nom or yarn
+#### npm ####
+```bash
+    npm run start
+
+```
+
+#### yarn ####
+```bash
+    yarn run start
+```
+
+## Directories ##
+- constants
+    - Constants used for commmon processes in the app, such as enumerations. 
+- db
+    - The database interaction layer, brings the data from the api to the app.
+-pages
+    - Contains the pages and views displayed through the whole application.
+-pages/api
+    - Internal api created for external requests
+-public
+    - Static resources used in the app.
+-styles
+    - Stylesheets used for the user interface stying of the app.
+
+## Pages ##
+
+### Games ###
+Displays a collection of games to choose from, it's represented by the route 'games'.
+
+### Game ###
+Display the detailed info of an specific game, given by the id in the route right after the 'game' route.

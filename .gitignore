@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#markdown about deploy info
+Vercel.md
