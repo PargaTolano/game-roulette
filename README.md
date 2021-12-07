@@ -60,13 +60,14 @@ Run it with nom or yarn
     - Constants used for commmon processes in the app, such as enumerations. 
 - db
     - The database interaction layer, brings the data from the api to the app.
--pages
-    - Contains the pages and views displayed through the whole application.
--pages/api
+- pages
+
+	- Contains the pages and views displayed through the whole application.
+- pages/api
     - Internal api created for external requests
--public
+- public
     - Static resources used in the app.
--styles
+- styles
     - Stylesheets used for the user interface stying of the app.
 
 ## Pages ##
