@@ -1,0 +1,34 @@
+.backgroundImage{
+    position:   absolute;
+    top:        0;
+    left:       0;
+    width:      100%;
+    height:     100%;
+    object-fit: cover;
+    filter:     blur(24px);
+}
+
+.coverCard{
+    position:           absolute;
+    top:                0;
+    left:               0;
+    bottom:             0;
+    right:              0;
+    transition:         transform 0.6s;
+    transform-style:    preserve-3d;
+}
+
+.coverCardFace{
+    position:               absolute;
+    width:                  100%;
+    height:                 100%;
+    backface-visibility:    hidden;
+    background-position:    center;
+    background-size:        cover;
+    background-repeat:      no-repeat;
+    background-attachment:  fixed;
+}
+
+.coverCardBackFace{
+    transform:          rotateX(180deg);
+}

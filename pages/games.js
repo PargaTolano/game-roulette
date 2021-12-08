@@ -5,11 +5,10 @@ import Link from 'next/link';
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
-import mockData from '../mock/games.json'
-
 import styles from '../styles/GameCard.module.css';
 import 'react-circular-progressbar/dist/styles.css';
 import getGames from '../db/getGames';
+import Footer from '../components/Footer';
 
 const GameCard = ({game})=>{
     const total_rating = game.total_rating.toPrecision(4);
@@ -53,19 +52,22 @@ const GameCard = ({game})=>{
 
 const Game = ({data}) => {
     return (
-        <main className={styles.gameCardBk}>
-            <h2 className={styles.title}>
-                Random Games
-            </h2>
-            <div className={styles.container}>
-                {
-                    data.map((el, i) =>
-                        <GameCard key={el.id} game={el}/>
-                    )
-                }  
-            </div>
-            
-        </main>
+        <>
+            <main className={styles.gameCardBk}>
+                <h2 className={styles.title}>
+                    Random Games
+                </h2>
+                <div className={styles.container}>
+                    {
+                        data.map((el, i) =>
+                            <GameCard key={el.id} game={el}/>
+                        )
+                    }  
+                </div>
+                
+            </main>
+            <Footer/>
+        </>
     )
 };
 

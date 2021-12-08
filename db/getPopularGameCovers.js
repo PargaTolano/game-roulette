@@ -2,11 +2,11 @@ import axios from 'axios';
 import imageSizes from '../constants/image-sizes';
 import auth from './auth';
 
-const getGame = async (id)=>{
+const getPopularGamesCovers = async ()=>{
 
     const { access_token } = await auth(); 
 
-    const query = `fields name, cover.url, storyline, summary, screenshots.url, platforms.name, platforms.url; where id = ${id};`;
+    const query = `fields screenshots.url; where screenshots != null & total_rating_count > 500; sort rating desc; limit 10;`;
 
     const config = {
         headers:{
@@ -17,13 +17,10 @@ const getGame = async (id)=>{
     };
 
     const { data } = await axios.post('https://api.igdb.com/v4/games',query, config);
-    data.forEach(element => {
-        element.cover.url = element.cover.url.replace(imageSizes.thumb, imageSizes._720);
-        element.screenshots.forEach(screenshot=>{
-            screenshot.url = screenshot.url.replace(imageSizes.thumb, imageSizes._1080)
-        });
+    data.forEach(game=>{
+        game.screenshots[0].url = game.screenshots[0].url.replace(imageSizes.thumb, imageSizes._1080);    
     });
-    return data;
+    return  data.map(game=>game.screenshots[0]);
 };
 
-export default getGame;
+export default getPopularGamesCovers;
