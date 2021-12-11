@@ -1,14 +1,21 @@
-import React from 'react';
-import axios from 'axios';
+import React, { 
+    useEffect, 
+    useRef, 
+    useState 
+} from 'react';
 
 import Link from 'next/link';
 
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { 
+    CircularProgressbar, 
+    buildStyles
+} from 'react-circular-progressbar';
 
-import styles from '../styles/GameCard.module.css';
+import styles       from '../styles/GameCard.module.css';
 import 'react-circular-progressbar/dist/styles.css';
-import getGames from '../db/getGames';
-import Footer from '../components/Footer';
+
+import getGames     from '../db/getGames';
+import Footer       from '../components/Footer';
 
 const GameCard = ({game})=>{
     const total_rating = game.total_rating.toPrecision(4);
@@ -50,6 +57,59 @@ const GameCard = ({game})=>{
     );
 };
 
+const GameCardHolder = ({games:gamesProp})=>{
+
+    const [{games, offset}, setState] = useState({
+        games: gamesProp,
+        offset: gamesProp.length
+    });
+
+    const ref = useRef();
+
+    useEffect(()=>{
+        
+        let options = {
+            root:           null,
+            rootMargin:     '500px',
+            threshold:      0.0
+        };
+
+        let observer = new IntersectionObserver((entries, observer)=>{
+            entries.forEach(async entry=>{
+                if(entry.isIntersecting){
+                    const arr = await (await fetch('/api/game?offset='+offset)).json();
+                    setState( { offset: offset + arr.length, games: [...games, ...arr] } );
+                }
+            });            
+        }, options);
+
+        observer.observe(ref.current);
+
+        return ()=>observer.disconnect();
+    },[]);
+
+    return(
+        <>
+            <div className={styles.container}>
+                {
+                    games.map(game => <GameCard key={game.id} game={game}/>)
+                }  
+            </div>
+            <span 
+                ref={ref} 
+                style={{
+                    position:   'absolute', 
+                    height:     '10px',
+                    width:      '100%',
+                    left:       0,
+                    bottom:     0,
+                    zIndex:     -1,
+                }}
+            ></span>
+        </>
+    );
+};
+
 const Game = ({data}) => {
     return (
         <>
@@ -57,18 +117,11 @@ const Game = ({data}) => {
                 <h2 className={styles.title}>
                     Random Games
                 </h2>
-                <div className={styles.container}>
-                    {
-                        data.map((el, i) =>
-                            <GameCard key={el.id} game={el}/>
-                        )
-                    }  
-                </div>
-                
+                <GameCardHolder games={data}/>
             </main>
             <Footer/>
         </>
-    )
+    );
 };
 
 export default Game;
@@ -78,7 +131,7 @@ export async function getStaticProps (context) {
         const data = await getGames();
 
         return {
-          props: { data }, // will be passed to the page component as props
+          props: { data }, // will be forwarded to the page component as props
         };
     } catch(err){
         return {

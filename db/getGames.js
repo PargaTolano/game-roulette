@@ -2,16 +2,17 @@ import axios from 'axios';
 import imageSizes from '../constants/image-sizes';
 import auth from './auth';
 
-const getGames = async ()=>{
-
+const getGames = async (offset = 0)=>{
     const { access_token } = await auth(); 
 
     let query = `   fields name, first_release_date, platforms.abbreviation, cover.url, total_rating;
-                    where rating > 69 &
+                    where rating > 30 &
                     aggregated_rating_count > 0 &
                     total_rating_count > 1 &
                     version_parent = null;
-                    sort first_release_date desc;`;
+                    sort first_release_date desc;
+                    limit 10;
+                    offset ${offset};`;
 
     const config = {
         headers:{

@@ -43,7 +43,6 @@ const GameDetail = ({data}) => {
                         <p className={styles.storyline}>
                             {data.storyline}
                         </p>
-                        
                     </div>
                 </div>
             </main>
