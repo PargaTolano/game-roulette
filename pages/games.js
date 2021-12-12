@@ -112,7 +112,7 @@ const GameCardHolder = ({games:gamesProp})=>{
 
 const Game = ({data}) => {
     return (
-        <>
+        <div  className={styles.page}>
             <main className={styles.gameCardBk}>
                 <h2 className={styles.title}>
                     Random Games
@@ -120,7 +120,7 @@ const Game = ({data}) => {
                 <GameCardHolder games={data}/>
             </main>
             <Footer/>
-        </>
+        </div>
     );
 };
 

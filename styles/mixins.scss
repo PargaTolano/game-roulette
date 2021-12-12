@@ -1,0 +1,15 @@
+@mixin gradient-text{
+    color:                      transparent;
+    background-image:           var(--main-gradient);
+    background-clip:            text;
+    -webkit-background-clip:    text;
+    -webkit-text-fill-color:    transparent;
+}
+
+@mixin gradient-border{
+    outline:            none;
+    border:             10px solid;
+    border-image-slice: 1;
+    border-width:       5px;
+    border-image-source: var(--main-gradient);
+}
