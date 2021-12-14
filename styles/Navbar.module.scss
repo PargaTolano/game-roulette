@@ -1,0 +1,106 @@
+@import './mixins.scss';
+
+$height:    100px;
+$height2:   calc( $height * 0.7);
+
+.nav{
+    position:       sticky;
+    width:          100%;
+    height:         $height;
+    top:            0;
+    left:           0;
+    background-color: #131313;
+    z-index:        1;
+}
+
+.navContent{
+    display:            flex;
+    height:             100%;
+    align-items:        center;
+    justify-content:    center;
+}
+
+.h2{
+    position:       absolute;
+    left:           0;
+    font-size:      1.2em;
+    margin:         0;
+    margin-left:    10px;
+    @include gradient-text;
+    @media screen and (max-width: 768px){
+        width:          100%;
+        text-align:     center;
+    }
+}
+
+.menuIcon{
+    position:       absolute;
+    display:        none;
+    left:           0;
+    margin:         10px;
+    color:          white;
+    font-size:      32px;
+    cursor:         pointer;
+    @media screen and (max-width: 768px) {
+        display: inline-block;
+        z-index: 1;
+    }
+}
+
+.menuIconHeader{
+    display:        none;
+    align-items:    center;
+    gap:            10px;
+    @media screen and (max-widtH: 768px){
+        display: flex;
+    }
+}
+
+.menuIconList{
+    display:    inline-flex;
+    font-size:  32px;
+    height:     $height;
+    cursor:     pointer;
+}
+
+.listTitle{
+    display:        inline-flex;
+    height:         $height;
+    align-items:    center;
+}
+
+.links{
+    display:            flex;
+    gap:                30px;
+    color:              white;
+    list-style-type:    none;
+    transform:          translateX(0);
+    transition:         0.3s;
+    margin:             0;
+    padding:            0;
+    align-items:        center;
+    @media screen and (max-width: 768px){
+        position:           fixed;
+        top:                0;
+        left:               0;
+        width:              400px;
+        height:             100vh;
+        padding-left:       10px;
+        flex-flow:          column nowrap;
+        transform:          translateX(-100%);
+        background-color:   #131313;
+        z-index:            2;
+        align-items:        flex-start;
+        &.active{
+            transform: translateX(0%);
+        }
+    }
+}
+
+.link{
+    cursor:     pointer;
+    color: white;
+    &:hover{
+        color: #FE5F55;
+    }
+}

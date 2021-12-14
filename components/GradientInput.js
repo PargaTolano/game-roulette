@@ -16,6 +16,9 @@ const GradientInput = ({name, value, ...rest}) => {
                     {name}
                 </p>
             </div>
+            <p className={styles.textPlaceholder}>
+                {name}
+            </p>
             <input
                 className={styles.input}
                 name={name}

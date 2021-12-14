@@ -16,6 +16,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import getGames     from '../db/getGames';
 import Footer       from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const GameCard = ({game})=>{
     const total_rating = game.total_rating.toPrecision(4);
@@ -25,13 +26,7 @@ const GameCard = ({game})=>{
                 <div className={`${styles.gameCardFace} ${styles.gameCardFront}`}>
                     <img className={styles.gameImage} src={`https:${game.cover.url}`}/>
                 </div>
-                <div 
-                    className={`${styles.gameCardFace} ${styles.gameCardBack}`}
-                    style={{
-                        color: 'white',
-                        backgroundColor: '#131313'
-                    }}    
-                >                    
+                <div className={`${styles.gameCardFace} ${styles.gameCardBack}`}>                    
                     <h3 className={styles.gameTitle}>{game.name}</h3>
                     <CircularProgressbar
                         className  = {styles.gameProgressBar}
@@ -113,6 +108,7 @@ const GameCardHolder = ({games:gamesProp})=>{
 const Game = ({data}) => {
     return (
         <div  className={styles.page}>
+            <Navbar/>
             <main className={styles.gameCardBk}>
                 <h2 className={styles.title}>
                     Random Games

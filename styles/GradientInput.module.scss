@@ -9,24 +9,38 @@
 }
 
 .label{
+    position: relative;
     &:focus-within > .labelTextContainer{
         transform: translate(0px,0px);
     }
 }
 
 .labelTextContainer{
+    position:   relative;
     transform:  translate( 10px, calc(100% + 25px));
     transition: transform 0.2s;
     cursor:     text;
+    z-index:    1;
 }
 
 .labelTextContainerNotEmpty{
-    transform: translate(0px,0px);
+    position:   relative;
+    transform:  translate(0px,0px);
+    z-index:    1;
 }
 
 .labelText{
     margin-top: 0;
     @include gradient-text;
+}
+
+.textPlaceholder{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #666;
+    margin-top: 0;
+    z-index: 0;
 }
 
 .input{

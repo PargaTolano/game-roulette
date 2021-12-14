@@ -1,6 +1,7 @@
 import Link             from 'next/link';
 import React            from 'react'; 
 import HeroFlipper      from '../../components/HeroFlipper';
+import Navbar from '../../components/Navbar';
 import getGame          from '../../db/getGame';
 
 import styles           from '../../styles/Game.module.css';
@@ -18,6 +19,7 @@ const PlatformButton = ({platform})=>{
 const GameDetail = ({data}) => {
     return (
         <div className={styles.page}>
+            <Navbar/>
             <header className={styles.cover}>
                 <HeroFlipper images={data.screenshots}/>
             </header>
@@ -35,7 +37,7 @@ const GameDetail = ({data}) => {
                             {data.name}
                         </h1>
                         <div className={styles.buttonContainer}>
-                            {data.platforms.map(platform=><PlatformButton key={platform.id} platform={platform}/>)}
+                            {data.platforms?.map(platform=><PlatformButton key={platform.id} platform={platform}/>)}
                         </div>
                         <p className={styles.summary}>
                             {data.summary}

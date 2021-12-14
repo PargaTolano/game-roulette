@@ -1,3 +1,5 @@
+@import './mixins.scss';
+
 $breakpoint : 768px;
 
 .button{
@@ -26,8 +28,10 @@ $breakpoint : 768px;
         font-size:       16px;
     }
 
-    &:hover .default{
-        opacity: 0;
+    &:hover {
+        & .default{
+            opacity: 0;
+        }
     }
 
     @media screen and (min-width: $breakpoint) {
@@ -37,14 +41,10 @@ $breakpoint : 768px;
 .default{
     background-image:   var(--main-gradient);
     color:              white;
-    transition:         .6s;
+    transition:         0.2s;
     z-index:            1;
 }
 
 .hovered{
-    color:                      transparent;
-    background-image:           var(--main-gradient);
-    background-clip:            text;
-    -webkit-background-clip:    text;
-    -webkit-text-fill-color:    transparent;
+    @include gradient-text;
 }

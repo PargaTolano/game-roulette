@@ -5,7 +5,7 @@ import GradientShiftButton  from '../components/GradientShiftButton';
 
 import styles from '../styles/Login.module.scss';
 
-const Login = () => {
+const Signup = () => {
 
     const[state, setState] = useState({
         username: '',
@@ -18,7 +18,6 @@ const Login = () => {
 
     const onSubmit= e => {
         e.preventDefault();
-        alert("SUBMITTED")
     };
 
     return (
@@ -30,8 +29,14 @@ const Login = () => {
                     onSubmit    ={onSubmit}
                 >
                     <h1 className={styles.title}>
-                        Log In
+                        Sign up
                     </h1>
+                    <GradientInput 
+                        name='email'
+                        type='email'
+                        value={state.username}
+                        onChange={onChange}
+                    />
                     <GradientInput 
                         name='username'
                         type='text'
@@ -44,7 +49,7 @@ const Login = () => {
                         value   ={state.password}
                         onChange={onChange}
                     />
-                    <GradientShiftButton content='Sign In To Game Roulette'/>
+                    <GradientShiftButton content='Join To Game Roulette!'/>
                 </form>
             </main>
             <Footer/>
@@ -52,4 +57,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;

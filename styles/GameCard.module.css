@@ -78,9 +78,11 @@
     width:              100%;
     height:             100%;
     flex-flow:          column nowrap;
+    justify-content:    space-between;
     align-items:        center;
-    gap:                100px;
     transform:          rotateY(180deg);
+    color:              white;
+    background-color:   #131313;
 }
 
 .gameCardBack > *{
@@ -88,10 +90,14 @@
 }
 
 .gameTitle{
-    text-align: center;
-    color:      white;
-    font-size:  1.6em;
-    text-shadow: 1px 1px 2px black;
+    flex:           0 0 auto;
+    max-width:      100%;
+    text-align:     center;
+    color:          white;
+    font-size:      1.3rem;
+    white-space:    nowrap;
+    overflow:       clip;
+    text-overflow:  ellipsis; 
 }
 
 .gameImage{
@@ -108,8 +114,9 @@
 }
 
 .gameCardSeeMore{
-    text-align: center;
-    color:      #BF55EC;
+    flex :                  0 0 auto;
+    text-align:             center;
+    color:                  #BF55EC;
     -webkit-touch-callout:  none;
     -webkit-user-select:    none;
     -khtml-user-select:     none;
@@ -140,11 +147,20 @@
         width:                  50%;
         padding-bottom:         calc( 200% / 3 );
     }
-}
 
-@media(max-width: 728px) {
-    .gameCardContainer{
-        width:                  100%;
-        padding-bottom:         calc( 100% * 4/ 3 );
+    .gameTitle{
+        font-size:      1rem;
+    }
+
+    .gameProgressBar{
+        flex: 0 0 70px;
     }
 }
+
+/* @media(max-width: 728px) {
+    
+
+    .gameProgressBar{
+        flex: 0 0 40px;
+    }
+}  */
