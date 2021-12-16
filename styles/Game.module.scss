@@ -26,8 +26,12 @@
 .titleArtContainer{
     position:       relative;
     display:        flex;
-    flex-flow:      column nowrap;
-    align-items:    center;
+    flex-flow:      row nowrap;
+    align-items:    flex-start;
+    @media screen and (max-width: 768px) {
+        flex-flow:      column nowrap;
+        align-items:    center;
+    }
 }
 
 .gameBoxArt{
@@ -71,9 +75,12 @@
 .buttonContainer{
     display:            flex;
     padding:            10px 0px;
-    justify-content:    center;
+    justify-content:    flex-start;
     gap:                5px;    
     flex-wrap:          wrap;
+    @media screen and (max-width: 768px){
+        justify-content: center;;
+    }
 }
 
 .platformButton{
@@ -121,9 +128,5 @@
     .gameBoxArt{
         flex: 0 0       auto;
         align-self:     flex-start;
-    }
-
-    .buttonContainer{
-        justify-content: flex-start;
     }
 }

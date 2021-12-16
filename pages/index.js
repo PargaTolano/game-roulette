@@ -32,7 +32,9 @@ export default function Home({data}) {
           <Link href={'games'}>
             <div className={styles.explore}>
               <a className={styles.exploreLink}>
-                Explore Games! &rarr;
+                <p className={styles.exploreLinkText}>  
+                  Explore Games! &rarr;
+                </p>
               </a>
             </div>
           </Link>
