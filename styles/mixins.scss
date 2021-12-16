@@ -13,3 +13,9 @@
     border-width:       5px;
     border-image-source: var(--main-gradient);
 }
+
+@mixin hover-color($color){
+    &:hover{
+        color: $color;
+    }
+}

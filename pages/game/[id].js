@@ -1,10 +1,11 @@
 import Link             from 'next/link';
 import React            from 'react'; 
+import Footer from '../../components/Footer';
 import HeroFlipper      from '../../components/HeroFlipper';
 import Navbar from '../../components/Navbar';
 import getGame          from '../../db/getGame';
 
-import styles           from '../../styles/Game.module.css';
+import styles           from '../../styles/Game.module.scss';
 
 const PlatformButton = ({platform})=>{
     return(
@@ -48,6 +49,7 @@ const GameDetail = ({data}) => {
                     </div>
                 </div>
             </main>
+            <Footer/>
         </div>
     )
 };

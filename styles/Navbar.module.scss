@@ -23,9 +23,11 @@ $height2:   calc( $height * 0.7);
 .h2{
     position:       absolute;
     left:           0;
-    font-size:      1.2em;
+    font-size:      1.4em;
     margin:         0;
     margin-left:    10px;
+    user-select:    none;
+    cursor:         pointer;
     @include gradient-text;
     @media screen and (max-width: 768px){
         width:          100%;
@@ -41,6 +43,7 @@ $height2:   calc( $height * 0.7);
     color:          white;
     font-size:      32px;
     cursor:         pointer;
+    @include hover-color(#FE5F55);
     @media screen and (max-width: 768px) {
         display: inline-block;
         z-index: 1;
@@ -61,6 +64,7 @@ $height2:   calc( $height * 0.7);
     font-size:  32px;
     height:     $height;
     cursor:     pointer;
+    @include hover-color(#FE5F55);
 }
 
 .listTitle{
@@ -99,8 +103,6 @@ $height2:   calc( $height * 0.7);
 
 .link{
     cursor:     pointer;
-    color: white;
-    &:hover{
-        color: #FE5F55;
-    }
+    color:      white;
+    @include hover-color(#FE5F55);
 }

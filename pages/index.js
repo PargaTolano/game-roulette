@@ -6,7 +6,7 @@ import Footer       from '../components/Footer';
 
 import getPopularGamesCovers from '../db/getPopularGameCovers';
 
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import Navbar from '../components/Navbar';
 
 export default function Home({data}) {
