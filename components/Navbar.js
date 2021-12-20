@@ -5,12 +5,14 @@ import {
     MdMenu,
     MdMenuOpen
 } from 'react-icons/md';
+import { auth } from '../firebase/clientApp';
 
 import styles from '../styles/Navbar.module.scss';
 
 const Navbar = () => {
 
-    const[isShown, setIsShown] = useState(false);
+    const [isShown, setIsShown] = useState(false);
+    const [user, setUser]       = useState(auth.currentUser);
 
     useEffect(()=>{
         const cb = ()=>{
@@ -18,6 +20,8 @@ const Navbar = () => {
                 setIsShown(false);
             }
         };
+
+        auth.onAuthStateChanged(user=> void setUser(user));
 
         window.addEventListener('resize',cb);
         return ()=> window.removeEventListener('resize', cb);
@@ -50,17 +54,36 @@ const Navbar = () => {
                             Explore
                         </li>
                     </Link>
-                    <Link href="#">
-                        <li className={styles.link}>
-                            My Lists
-                        </li>
-                    </Link>
+                    {
+                        user && 
+                        <Link href="/lists">
+                            <li className={styles.link}>
+                                My Lists
+                            </li>
+                        </Link>
+                    }
                     <Link href="#">
                         <li className={styles.link}>
                             About
                         </li>
                     </Link>
                 </ul>
+                <div className={styles.loginContainer}>
+                    {
+                        user
+                        ?
+                            <img
+                                className={styles.pfp}
+                                src={ auth.currentUser?.photoURL }
+                            />
+                        :
+                            <Link href='/login'>
+                                <button className={styles.loginButton}>
+                                    <p>Log In</p>
+                                </button>
+                            </Link>                    
+                    }
+                </div>
             </div>
             
         </nav>

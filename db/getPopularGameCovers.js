@@ -1,5 +1,6 @@
 import axios from 'axios';
 import imageSizes from '../constants/image-sizes';
+import shuffle from '../utils/shuffle';
 import auth from './auth';
 
 const getPopularGamesCovers = async ()=>{
@@ -20,7 +21,11 @@ const getPopularGamesCovers = async ()=>{
     data.forEach(game=>{
         game.screenshots[0].url = game.screenshots[0].url.replace(imageSizes.thumb, imageSizes._1080);    
     });
-    return  data.map(game=>game.screenshots[0]);
+
+    const to_return = data.map(game=>game.screenshots[0]);
+    shuffle(to_return);    
+
+    return  to_return;
 };
 
 export default getPopularGamesCovers;
