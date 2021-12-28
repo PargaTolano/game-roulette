@@ -1,0 +1,33 @@
+@import './mixins.scss';
+
+.searchContainer{
+    position:           relative;
+    background-color:   rgba(0,0,0,0);
+    transition:         background-color 0.3s;
+    &:focus-within{
+        background-color: rgba(0,0,0,0.1);
+    }
+}
+
+.searchInput{
+    position:                   relative;     
+    width:                      100%;
+    outline:                    none;
+    padding:                    10px 20px;
+    padding-left:               calc(1ch + 30px);
+    border-bottom:              0px solid;
+    border-image-slice:         1;
+    border-width:               0px;
+    border-bottom-width:        5px;
+    border-image-source:        var(--main-gradient);
+    @include                    gradient-text;
+    font-size:                  24px;
+}
+
+.searchIcon{
+    position:   absolute;
+    left:       0;
+    margin:     15px;
+    font-size:  24px;
+    color:      #FE5F55;
+}

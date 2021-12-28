@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
-import Footer               from '../components/Footer';
-import GradientInput from '../components/GradientInput';
-import GradientShiftButton  from '../components/GradientShiftButton';
+import { useRouter }                        from 'next/router';
+import React, { useState }                  from 'react';
 
-import styles from '../styles/Login.module.scss';
+import { createUserWithEmailAndPassword }   from 'firebase/auth';
+import { auth }                             from '../firebase/clientApp';
+
+import Footer                               from '../components/Footer';
+import GradientInput                        from '../components/GradientInput';
+import GradientShiftButton                  from '../components/GradientShiftButton';
+
+import styles                               from '../styles/Login.module.scss';
 
 const Signup = () => {
 
+    const router = useRouter();
+
     const[state, setState] = useState({
-        username: '',
-        password: '',
+        email:      '',
+        username:   '',
+        password:   '',
     });
 
-    const onChange = e=>{
+    const onChange = e =>{
         setState(x=>({...x, [e.target.name]: e.target.value}));
-    }
+    };
 
-    const onSubmit= e => {
+    const onSubmit= async e => {
         e.preventDefault();
+
+        const credentials = await createUserWithEmailAndPassword(auth, state.email, state.password);
+        if(credentials){
+            router.push('/login');
+        }
     };
 
     return (
@@ -34,7 +47,7 @@ const Signup = () => {
                     <GradientInput 
                         name='email'
                         type='email'
-                        value={state.username}
+                        value={state.email}
                         onChange={onChange}
                     />
                     <GradientInput 

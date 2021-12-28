@@ -5,7 +5,14 @@ import firebase from "../firebase/clientApp";
 export const createUser = async (email, password)=>{
     const auth = getAuth(firebase);
 
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    let userCredential;
+    try{
+        
+        userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    }catch(error){
+        console.error(error);
+        return null;
+    }
 
     const db                = getFirestore(firebase);
     const userCollection    = collection(db, 'users');
@@ -15,8 +22,14 @@ export const createUser = async (email, password)=>{
         id: userCredential.user.uid, 
         lists: []
     };
+
+    try {
+        await setDoc(userDoc, data);
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
     
-    await setDoc(userDoc, data);
 
     return data;
 };

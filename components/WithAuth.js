@@ -1,24 +1,20 @@
-import { auth }     from '../firebase/clientApp';
+import { useRouter }    from 'next/router';
+import { auth }         from '../firebase/clientApp';
 
-import Login        from '../pages/login';
-
-const WithAuth = (Component)=>{
+const WithAuth = ({children})=>{
     const user = auth.currentUser;
+    const router = useRouter();
 
-    const AuthedComponent = (props)=>{
+    if(!user){
+        router.push('/login');
+        return (<></>);
+    }
 
-        if(!user){
-            return (
-                <Login/>
-            );
-        }
-
-        return(
-            <Component {...props}/>
-        );
-    };
-
-    return AuthedComponent;
+    return(
+        <>
+            {children}
+        </>
+    );
 };
 
 export default WithAuth;

@@ -1,0 +1,115 @@
+@import './mixins.scss';
+
+.page{
+    margin: 0;
+    padding: 0;
+}
+
+$panel-background: #131313;
+
+@mixin grid-panel{
+    border-radius:      30px;
+    background-color:   $panel-background;
+}
+
+.grid{
+    display:                grid;
+    width:                  100%;
+    height:                 700px;
+    padding:                20px;
+    padding-bottom:         0px;
+    gap:                    20px;
+    // grid-template-columns:  repeat(5, 1fr);
+    // grid-template-columns:  repeat(4, 1fr);
+    grid-template-areas:    "a a a a b b"
+                            "a a a a b b"
+                            "a a a a c c"
+                            "a a a a c c";
+
+    @media screen and (max-width: 768px) {
+        height:              600px;
+        grid-template-areas: "a a a a"
+                             "a a a a"
+                             "a a a a"
+                             "a a a a"
+                             "b b c c"
+                             "b b c c";
+    }
+}
+
+.maingriditem{
+    grid-area:        a;
+    @include grid-panel;
+}
+
+.secondarytop{
+    grid-area:        b;
+    @include grid-panel;
+}
+
+.secondarybottom{
+    grid-area:        c;
+    @include grid-panel;
+}
+
+.flexbox{
+    display:            flex;
+    width:              100%;
+    height:             500px;
+    padding:            20px;
+    justify-content:    flex-start;
+    align-items:        stretch;
+    gap:                20px;
+    @media screen and (max-width: 768px){
+        flex-flow: column nowrap;
+        height: 1000px;
+    }
+}
+
+$duration:          300ms;
+.flexchild{
+    position:           relative; 
+    display:            flex;
+    flex:               1 0 0;
+    padding:            0;
+    @include            grid-panel;
+    justify-content:    center;
+    align-items:        center;
+    transition:         flex-grow $duration;
+    overflow:           hidden;
+    &:hover{
+        flex: 3 0 0;
+        & .text{
+            transform:              translateY(0);
+            transition-delay:       calc($duration/2);
+        }
+        & .icon{
+            font-size: calc( var(--icon-size) * 2 );
+        }
+    }
+}
+
+.icon{
+    --icon-size: 6em;
+    color:      white;
+    font-size:  var(--icon-size);
+    transition: font-size $duration;
+    @media screen and (max-width: 768px) {
+        --icon-size: 3em;
+    }
+}
+
+.text{
+    position:           absolute;
+    bottom:             0;
+    left:               0;
+    max-height:         400px;
+    margin:             0;
+    padding:            20px;
+    color:              white;
+    font-size:          18px;
+    background-color:   rgba(0,0,0,0.7);
+    overflow-y:         auto;
+    transform:          translateY(100%);
+    transition:         transform $duration;
+}

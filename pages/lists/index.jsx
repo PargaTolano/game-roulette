@@ -1,45 +1,37 @@
-import { getAuth } from 'firebase/auth';
-import React    from 'react';
-import WithAuth from '../../components/WithAuth';
-import getLists from '../../db/getLists';
-import { auth } from '../../firebase/clientApp';
+import React                    from 'react';
+import useAuth                  from '../../hooks/useAuth';
 
+import Navbar                   from '../../components/Navbar';
 
-const Lists = () => {
-    return (
-        <div>
-            
-        </div>
+//TODO authentication in server side
+const Lists = ({data}) => {
+
+    const user = useAuth();
+
+    return(
+        <>
+            <Navbar/>
+            <h1>Lists</h1>
+        </>
     );
-};
+}; 
 
 export default Lists;
 
-export const getServerSideProps = async (context)=>{
-    try{
-        const user = auth.currentUser;
+// export async function getStaticProps() {
+//     try{
+//         const lists = await getLists(user.uid);
 
-        if( !user ){
-            return {
-                redirect:{
-                    permanent: false,
-                    destination: '/login'
-                }
-            }
-        }
-
-        const lists = await getLists(user.uid);
-
-        return {
-            props:{
-                data: lists
-            }
-        };
-    }catch(e){
-        return {
-            props: {
-                data: e.message
-            }
-        };
-    }
-};
+//         return {
+//             props:{
+//                 data: lists
+//             }
+//         };
+//     }catch(e){
+//         return {
+//             props: {
+//                 data: e.message
+//             }
+//         };
+//     }
+// };

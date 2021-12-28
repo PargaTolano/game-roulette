@@ -1,31 +1,21 @@
 import Link     from 'next/link';
-import React, { useEffect, useState }    from 'react';
+import React    from 'react';
 
 import {
     MdMenu,
     MdMenuOpen
 } from 'react-icons/md';
-import { auth } from '../firebase/clientApp';
+import useNavbar from '../hooks/useNavbar';
 
 import styles from '../styles/Navbar.module.scss';
 
 const Navbar = () => {
 
-    const [isShown, setIsShown] = useState(false);
-    const [user, setUser]       = useState(auth.currentUser);
-
-    useEffect(()=>{
-        const cb = ()=>{
-            if( window.innerWidth > 768 ){
-                setIsShown(false);
-            }
-        };
-
-        auth.onAuthStateChanged(user=> void setUser(user));
-
-        window.addEventListener('resize',cb);
-        return ()=> window.removeEventListener('resize', cb);
-    },[]);
+    const {
+        isShown,
+        setIsShown, 
+        user
+    }   = useNavbar();
 
     const onClickMenuButton = ()=>{
         setIsShown(x=>!x);
@@ -62,7 +52,7 @@ const Navbar = () => {
                             </li>
                         </Link>
                     }
-                    <Link href="#">
+                    <Link href="/about">
                         <li className={styles.link}>
                             About
                         </li>
@@ -74,7 +64,7 @@ const Navbar = () => {
                         ?
                             <img
                                 className={styles.pfp}
-                                src={ auth.currentUser?.photoURL }
+                                src={ user.photoURL || '/profile-pic.svg'}
                             />
                         :
                             <Link href='/login'>

@@ -47,3 +47,22 @@ $breakpoint : 768px;
     text-align: center;
     @include    gradient-text;
 }
+
+.signup{
+    text-align: center;
+    display: inline;
+    font-size: 1em;
+}
+
+.signupLink{
+    transition: .2s;
+    cursor:     pointer;
+    color:      #BF55EC;
+    @include    hover-color(#FE5F55);
+}
+
+.password{
+    all: unset;
+    cursor: pointer;
+    @include hover-color(#FE5F55);
+}
