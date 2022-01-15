@@ -10,7 +10,7 @@ $height2:   calc( $height * 0.7);
     top:            0;
     left:           0;
     background-color: #131313;
-    z-index:        1;
+    z-index:        20;
 }
 
 .navContent{
@@ -104,7 +104,7 @@ $height2:   calc( $height * 0.7);
 .link{
     cursor:     pointer;
     color:      white;
-    @include hover-color(#FE5F55);
+    @include    hover-color(#FE5F55);
 }
 
 .loginContainer{

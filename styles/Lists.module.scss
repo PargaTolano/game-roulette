@@ -1,3 +1,5 @@
+@import './mixins.scss';
+
 .card{
 
 }
@@ -8,4 +10,32 @@
 
 .description{
     
+}
+
+.cardContainer{
+    display:    flex;
+    flex-flow:  row nowrap;
+    padding:    10px;
+}
+
+
+@mixin list-card{
+    width:      var(--box-art-width);
+    height:     var(--box-art-height);
+    transition: transform 0.3s;
+    cursor:     pointer;
+    &:hover{
+        transform: scale(0.95);
+    }
+}
+
+.addList{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    @include            list-card;
+    @include            gradient-border;
+    border-width:       2px;
+    color:              #FE5F55;
+    font-size:          2em;
 }

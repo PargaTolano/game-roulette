@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import styles from '../styles/GradientInput.module.scss';
 
-const GradientInput = ({name, value, ...rest}) => {
+const GradientInput = ({label, value, labelFontSize = '16px', inputFontSize = '12px', ...rest}) => {
     //ltcc = label text container class
     const [ltcc, setLtcc] = useState(styles.labelTextContainer);
     useEffect(()=>{
@@ -12,16 +12,25 @@ const GradientInput = ({name, value, ...rest}) => {
     return (
         <label className={styles.label}>
             <div className={ltcc}>
-                <p className={styles.labelText}>
-                    {name}
+                <p 
+                    className={styles.labelText}
+                    style={{fontSize: labelFontSize}}
+                >
+                    {label}
                 </p>
             </div>
-            <p className={styles.textPlaceholder}>
-                {name}
+            <p 
+                className={styles.textPlaceholder}
+                style={{fontSize: labelFontSize}}
+            >
+                {label}
             </p>
             <input
                 className={styles.input}
-                name={name}
+                value={value}
+                style={{
+                    fontSize: inputFontSize
+                }}
                 {...rest}
             />
         </label>

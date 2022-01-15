@@ -25,7 +25,11 @@ const useNavbar = (threshold = 768)=>{
         }
     },[]);
 
-    return {isShown, setIsShown, currentUser};
+    return {
+        isShown, 
+        setIsShown, 
+        user: currentUser
+    };
 };
 
 export default useNavbar;
