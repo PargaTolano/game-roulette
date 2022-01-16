@@ -1,14 +1,26 @@
-import { doc, getFirestore, setDoc } from 'firebase/firestore';
-import firebase                      from '../firebase/clientApp';
+import { 
+    collection, 
+    getFirestore, 
+    setDoc, 
+    addDoc 
+} from 'firebase/firestore';
 
-const createList = async (id, listData) => {
+import firebase             from '../firebase/clientApp';
+
+import { listConverter }    from './model/FirestoreList';
+
+const createList = async (id, list) => {
     const db = getFirestore(firebase);
 
-    const document = doc(db, `users/${id}/lists`);
-    listData.id = document.id;
-    await setDoc(document, listData);
+    const listCollection = collection( db, `users/${id}/lists`);
+    const newDoc = await addDoc( listCollection ,listConverter.toFirestore(list));
 
-    return listData;
+    const docref = newDoc.withConverter(listConverter);
+
+    list.id = docref.id;
+    await setDoc(docref, list);
+
+    return list;
 };
 
 export default createList;

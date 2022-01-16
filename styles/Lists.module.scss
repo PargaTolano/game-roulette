@@ -14,7 +14,7 @@
 
 .cardContainer{
     display:    flex;
-    flex-flow:  row nowrap;
+    flex-flow:  row wrap;
     padding:    10px;
 }
 
@@ -38,4 +38,19 @@
     border-width:       2px;
     color:              #FE5F55;
     font-size:          2em;
+}
+
+.list{
+    display:            flex;
+    flex-flow:          column nowrap;
+    justify-content:    flex-end;
+    @include            list-card;
+    // @include            gradient-border;
+    border-width:       2px;
+    background-color:   #333333;
+}
+
+.listName{
+    @include    gradient-text;
+    font-size:  3rem;
 }

@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { collection, doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import firebase from "../firebase/clientApp";
 
 export const createUser = async (email, password)=>{
@@ -7,7 +7,6 @@ export const createUser = async (email, password)=>{
 
     let userCredential;
     try{
-        
         userCredential = await createUserWithEmailAndPassword(auth, email, password);
     }catch(error){
         console.error(error);
@@ -16,7 +15,6 @@ export const createUser = async (email, password)=>{
 
     const db                = getFirestore(firebase);
     const userCollection    = collection(db, 'users');
-    const userDoc           = doc(userCollection, userCredential.user.uid);
 
     const data = {
         id: userCredential.user.uid, 
@@ -24,12 +22,11 @@ export const createUser = async (email, password)=>{
     };
 
     try {
-        await setDoc(userDoc, data);
+        await addDoc(userCollection, data);
     } catch (error) {
         console.error(error);
         return null;
     }
-    
 
     return data;
 };

@@ -25,6 +25,7 @@ const getGames = async (offset = 0)=>{
     const { data } = await axios.post( 'https://api.igdb.com/v4/games', query, config);
     
     data.forEach(element => {
+        element.thumb  = element.cover.url;
         element.cover.url = element.cover.url.replace(imageSizes.thumb, imageSizes._720);
     });
     

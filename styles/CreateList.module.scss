@@ -167,3 +167,13 @@ $selectCardHeight: calc( $selectCardWidth * 4 / 3 );
 .name{
     font-size:      1rem!important;
 }
+
+.close{
+    all:            unset;
+    display:        inline-block;
+    font-size:      2rem;
+    color:          red;
+    margin:         0;
+    margin-left:    auto;
+    cursor:         pointer;
+}

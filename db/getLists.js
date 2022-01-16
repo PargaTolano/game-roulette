@@ -7,7 +7,7 @@ const getLists = async (id) => {
     const listCollection = collection(db, `users/${id}/lists`);
     const listsSnapshot  = await getDocs(listCollection);
     const lists = listsSnapshot.docs.map(doc=>doc.data());
-
+    
     return lists;
 };
 
