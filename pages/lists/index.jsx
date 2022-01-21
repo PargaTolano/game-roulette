@@ -7,12 +7,32 @@ import {
 } from 'react-icons/md';
 
 import Navbar                   from '../../components/Navbar';
-import getLists from '../../db/getLists';
-import { auth } from '../../firebase/clientApp';
 
 import useAuth                  from '../../hooks/useAuth';
 
-import styles from '../../styles/Lists.module.scss';
+import styles                   from '../../styles/Lists.module.scss';
+
+const List = ({data, key})=>{
+
+    return (
+        <Link href={`/lists/${data.id}`}>
+            <div 
+                className={styles.list} 
+                key={key}
+                style={{
+                    backgroundImage: `url(https:${data.games[0].cover.url})`,
+                    backgroundSize:  'cover'
+                }}
+            >
+                <div className={styles.listContent}>
+                    <h3 className={styles.listName}>
+                        {data.name}
+                    </h3>
+                </div>
+            </div>
+        </Link>
+    );
+};
 
 const Lists = ({data}) => {
 
@@ -34,23 +54,13 @@ const Lists = ({data}) => {
             <div className={styles.cardContainer}>
                 <Link href='/lists/create'>
                     <div className={styles.addList}>
-                        <MdAdd/>
+                        <div className={styles.listContent}>
+                            <MdAdd/>
+                        </div>
                     </div>
                 </Link>
                 {
-                    lists.map( (v,i) =>
-                        <div 
-                            className={styles.list} 
-                            key={i}
-                            style={{
-                                backgroundImage: `url(https:${v.games[0].cover.url})`,
-                                backgroundSize:  'cover'
-                            }}
-                        >
-                            <h3 className={styles.listName}>
-                                {v.name}
-                            </h3>
-                        </div> )
+                    lists.map( (v,i) =><List key={i} data={v}/>)
                 }
             </div>
         </>

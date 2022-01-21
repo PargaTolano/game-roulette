@@ -76,7 +76,7 @@ const Login = () => {
                     </button>
                     <GradientShiftButton content='Sign In To Game Roulette'/>
                     <p className={styles.signup}>    
-                        Don't have an account?&nbsp;
+                        Don&apos;t have an account?
                         <Link href='/signup'>
                             <span className={styles.signupLink}>Sign up!</span>
                         </Link>

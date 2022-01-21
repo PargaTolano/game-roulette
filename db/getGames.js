@@ -11,7 +11,7 @@ const getGames = async (offset = 0)=>{
                     total_rating_count > 1 &
                     version_parent = null;
                     sort first_release_date desc;
-                    limit 10;
+                    limit 12;
                     offset ${offset};`;
     
     const config = {

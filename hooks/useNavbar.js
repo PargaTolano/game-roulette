@@ -13,8 +13,6 @@ const useNavbar = (threshold = 768)=>{
         };
 
         const unsubAuth = auth.onAuthStateChanged(user=> {
-            console.log("%cUser", "font-size: 24px; color: orange;");
-            console.log(user);
             setCurrentUser(user);
         });
 

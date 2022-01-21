@@ -8,8 +8,10 @@ import getPopularGamesCovers from '../db/getPopularGameCovers';
 
 import styles from '../styles/Home.module.scss'
 import Navbar from '../components/Navbar';
+import Loading from '../components/Loading';
 
 export default function Home({data}) {
+
   return (
     <div className={styles.container}>
       <Head>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import Navbar           from '../../components/Navbar';
-import GradientInput    from '../../components/GradientInput';
 
 import styles           from '../../styles/CreateList.module.scss';
 import SearchBar        from '../../components/SearchBar';
@@ -113,6 +112,15 @@ const CreateList = () => {
         <div className={styles.page}>
             <Navbar/>
             <main className={styles.main}>
+                <div style={{
+                    background: '#232323',
+                    width:      700,
+                    height:     700,
+                    position:   'fixed',
+                    transform:  'translate(12.5vw, 0vh) rotate(-12deg)',
+                    zIndex:     -1,
+                }}>
+                </div>
                 <h1 className={styles.h1}>
                     Create New List
                 </h1>
@@ -120,15 +128,18 @@ const CreateList = () => {
                     className={styles.form}
                     onSubmit={onSubmit}
                 >
-                    <GradientInput 
-                        label='name'
-                        labelFontSize='24px'
-                        inputFontSize='16px'
-                        name='name'
-                        type='text'
-                        value={state.name}
-                        onChange={onChange}
-                    />
+                    <label>
+                        <p className={styles.labelText}>
+                            name
+                        </p>
+                        <input
+                            type='text' 
+                            className={styles.nameInput}
+                            name='name'
+                            value={state.name}
+                            onChange={onChange}
+                        />
+                    </label>
                     <label>
                         <p className={styles.labelText}>
                             description
@@ -141,7 +152,9 @@ const CreateList = () => {
                         >
                         </textarea>
                     </label>
-                    <button> submit </button>
+                    <button className={styles.submit}> 
+                        <p>submit</p> 
+                    </button>
                 </form>
                 <form onSubmit={onSubmitSearch}>
                     <SearchBar 

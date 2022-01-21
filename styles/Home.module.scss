@@ -18,18 +18,13 @@
 }
 
 .h1{
-  display:                    flex;
-  position:                   relative;
-  height:                     100%;
-  margin-top:                 0;
-  padding:                    0 10px;
-  color:                      transparent;
-  font-size:                  140px;
-  background-image:           linear-gradient(90deg, #BF55EC, #FE5F55 60%);
-  background-clip:            text;
-  -webkit-background-clip:    text;
-  -webkit-text-fill-color:    transparent;
-  align-items:                flex-end;
+  position:     absolute;
+  bottom:       0;
+  margin:       0;
+  padding:      0 10px;
+  @include      gradient-text;
+  font-size:    9rem;
+  align-items:  flex-end;
 }
 
 .welcome{

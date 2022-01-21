@@ -1,5 +1,7 @@
 :root{
-  --main-gradient: linear-gradient(90deg, #BF55EC, #FE5F55 60%);
+  --primary:  #FE5F55;
+  --secondary:#BF55EC;
+  --main-gradient: linear-gradient(0deg, var(--secondary), var(--primary)  60%);
   --third: calc(100% / 3);
   --sixth: calc(100% / 6);
   --fourthirds: calc( var(--third) * 4 / 3  );

@@ -1,0 +1,83 @@
+@import './mixins.scss';
+
+.page{
+    margin:     0;
+    padding:    0;
+}
+
+.title{
+    @include        gradient-text;
+    font-size:      9rem;
+    text-transform: capitalize;
+    margin:         2rem 0;
+    @media screen and (max-width: 1280px) {
+        font-size: 5rem;
+    }
+    @media screen and (max-width: 768px){
+        font-size: 4rem;
+    }
+}
+
+.descContainer{
+    display:            flex;
+    padding:            0 10px;
+    flex-wrap:          nowrap;
+    justify-content:    space-between;
+    @media screen and (max-width: 1280px) {
+        flex-direction: column;
+    }
+}
+
+.description{
+    font-size: 2rem;
+    &::first-letter{
+        text-transform: uppercase;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 1.5rem;        
+    }
+}
+
+.gameContainer{
+    display:    flex;
+    min-width:  530px;
+    height:     500px;
+    flex-flow:  column nowrap;
+    padding:    10px;
+    gap:        10px;
+    box-shadow: 0 0 10px gray;
+}
+
+.game{
+    display:    flex;
+    flex-wrap:  row nowrap;
+    padding:    15px;
+    gap:        10px;
+    box-shadow: 0 0 10px gray;
+    transition: 0.3s;
+    border-left: 10px solid var(--primary);
+    cursor:     pointer;
+    transform-origin: bottom left;
+    &:hover{
+        transform: scale(1.02);
+    }
+    &:active{
+        transform: scale(0.99);
+    }
+}
+
+.gamePic{
+    width:      70px;
+    height:     70px;
+    object-fit: cover;
+}
+
+.gameTitle{
+    @include        gradient-text;
+    font-size:      1.5rem;
+    margin:         0;
+    vertical-align: top;
+    @media screen and (max-width: 768px) {
+        font-size: 1rem;
+    }
+}
