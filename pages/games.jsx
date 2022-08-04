@@ -1,22 +1,31 @@
+import Head from 'next/head';
+import Link from 'next/link';
+
 import React, { 
     useEffect, 
     useRef, 
     useState 
 } from 'react';
 
-import Link from 'next/link';
-
 import { 
     CircularProgressbar, 
     buildStyles
 } from 'react-circular-progressbar';
 
-import styles       from '../styles/GameCard.module.css';
+import styles       from '../styles/GameCard.module.scss';
 import 'react-circular-progressbar/dist/styles.css';
 
 import getGames     from '../db/getGames';
 import Footer       from '../components/Footer';
-import Navbar from '../components/Navbar';
+import Navbar       from '../components/Navbar';
+
+const Banner = ()=>{
+    return(
+        <header>
+            
+        </header>
+    );
+};
 
 const GameCard = ({game})=>{
     const total_rating = game.total_rating.toPrecision(4);
@@ -41,9 +50,9 @@ const GameCard = ({game})=>{
                             strokeLinecap:  'butt'
                         })}
                     />
-                    <Link href={`/game/${game.id}`} >
+                    <Link href={`/game/${game.slug}`} >
                         <p className={styles.gameCardSeeMore}>
-                            SEE MORE...
+                            see more...
                         </p>
                     </Link>
                 </div>
@@ -72,7 +81,8 @@ const GameCardHolder = ({games:gamesProp})=>{
         let observer = new IntersectionObserver((entries, observer)=>{
             entries.forEach(async entry=>{
                 if(entry.isIntersecting){
-                    const arr = await (await fetch('/api/game?offset='+offset)).json();
+                    const res = await fetch('/api/game?offset='+offset);
+                    const arr = await res.json();
                     setState( { offset: offset + arr.length, games: [...games, ...arr] } );
                 }
             });            
@@ -105,13 +115,16 @@ const GameCardHolder = ({games:gamesProp})=>{
     );
 };
 
-const Game = ({data}) => {
+const Games = ({data}) => {
     return (
         <div  className={styles.page}>
+            <Head>
+                <title> Browse Games </title>
+            </Head>
             <Navbar/>
             <main className={styles.gameCardBk}>
                 <h2 className={styles.title}>
-                    Random Games
+                    explore games
                 </h2>
                 <GameCardHolder games={data}/>
             </main>
@@ -120,18 +133,18 @@ const Game = ({data}) => {
     );
 };
 
-export default Game;
+export default Games;
 
-export async function getStaticProps (context) {
+export async function getStaticProps () {
     try{
         const data = await getGames();
 
         return {
-          props: { data }, // will be forwarded to the page component as props
+            props: { data },
         };
     } catch(err){
         return {
             props: { data: err.message } 
         };
     }
-  }
+}

@@ -1,4 +1,5 @@
 :root{
+  --background: #333333;
   --primary:  #FE5F55;
   --secondary:#BF55EC;
   --main-gradient: linear-gradient(0deg, var(--secondary), var(--primary)  60%);

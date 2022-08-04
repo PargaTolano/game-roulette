@@ -49,20 +49,25 @@
 }
 
 .game{
+    --scale-hover: 1.02;
+    --scale-active: 0.99;
     display:    flex;
     flex-wrap:  row nowrap;
     padding:    15px;
     gap:        10px;
+    background-color: white;
     box-shadow: 0 0 10px gray;
     transition: 0.3s;
     border-left: 10px solid var(--primary);
     cursor:     pointer;
-    transform-origin: bottom left;
     &:hover{
-        transform: scale(1.02);
+        transform: scale( var(--scale-hover) );
     }
     &:active{
-        transform: scale(0.99);
+        transform: scale( var(--scale-active) );
+    }
+    @media screen and (max-width: 1280px){
+        --scale-hover: 1.01;
     }
 }
 

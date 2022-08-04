@@ -1,23 +1,26 @@
+@import './mixins.scss';
+
 .page{
     overflow: hidden;
+    background-color: var(--background  );
+}
+
+.banner{
+
 }
 
 .gameCardBk{
     position:               relative;
+    width:                  100%;
+    max-width:              1440px;
     padding-top:            20px;
-    background-size:        100% 100vh;
-    background-repeat:      no-repeat;
-    background-attachment:  fixed;
-    background-color:       #F4F4F6;
+    margin:                 0 auto;
 }
 
 .title{
-    color:                      transparent;
-    font-size:                  120px;
-    background:                 linear-gradient(90deg, #BF55EC, #FE5F55 60%);
-    background-clip:            text;
-    -webkit-background-clip:    text;
-    -webkit-text-fill-color:    transparent;
+    @include gradient-text;
+    font-size:      6rem;
+    text-transform: capitalize;
 }
 
 .title::after{
@@ -56,6 +59,12 @@
 
 .gameCardContainer:hover{
     z-index: 1;
+    & .gameCardSeeMore{
+        z-index: 500;
+    }
+    & .gameCardFront{
+        z-index: -1;
+    }
 }
 
 .gameCardContainer:hover .gameCard{
@@ -115,16 +124,11 @@
 
 .gameCardSeeMore{
     flex :                  0 0 auto;
-    text-align:             center;
     color:                  #BF55EC;
     -webkit-touch-callout:  none;
-    -webkit-user-select:    none;
-    -khtml-user-select:     none;
-    -moz-user-select:       none;
-    -ms-user-select:        none;
     user-select:            none;
     cursor:                 pointer;
-    z-index:                5;
+    text-transform:         uppercase;
 }
 
 .gameCardSeeMore:hover{
@@ -135,11 +139,8 @@
     color:      white;
 }
 
-@media(max-width: 1300px) {
-    .gameCardContainer{
-        width:                  calc(100%/3);
-        padding-bottom:         44%;
-    }
+@media(max-width: 10000px) {
+    
 }
 
 @media(max-width: 1000px) {

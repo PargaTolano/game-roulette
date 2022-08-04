@@ -1,4 +1,5 @@
 @import './mixins.scss';
+@import './Navbar.module.scss';
 
 .container{
   margin:   0;
@@ -8,63 +9,151 @@
 .cover{
   position:         relative;
   width:            100%;
-  height:           700px;
+  height:           calc(100vh - $height);
   perspective:      800px;
   overflow:         hidden;
   background-color: #323232;
+  background-image: url(/dot-grid.svg);
+  background-size: cover;
   @media screen and (max-width: 768px){
     height: 400px;
   }
 }
 
 .h1{
-  position:     absolute;
-  bottom:       0;
-  margin:       0;
-  padding:      0 10px;
-  @include      gradient-text;
-  font-size:    9rem;
-  align-items:  flex-end;
+  display:          flex;
+  position:         absolute;
+  left:             0;
+  bottom:           0;
+  margin:           0;
+  padding:          0 10px;
+  @include          gradient-text;
+  font-size:        9rem;
+  justify-content:  center;
+  align-items:      center;
+  z-index: 1;
+
+  -webkit-text-stroke: 1px black;
+  @media screen and (max-width: 1045px){
+    font-size: 5rem;
+  }
+  @media screen and (max-width: 768px){
+    font-size: 3rem;
+  }
+  & p {
+    text-transform: capitalize;
+    font-size:    0.7em;
+    margin-left:  0.5em;
+  }
+}
+
+.logoCover{
+  width:  1em;
 }
 
 .welcome{
-  padding:                    0px;
+  padding:                    0px 10px;
   margin:                     0 auto;
-  font-size:                  32px;
+  font-size:                  2rem;
   color:                      #323232;
   background-color:           white;
   & h2{
-    padding: 100px 10px;
+    & .gradient{
+      @include          gradient-text;
+    }
   }
   @media screen and (max-width: 768px){
     padding:                  100px 20px;
   }
 }
 
-.explore{
-  display:          flex;
-  justify-content:  center;
-  align-items:      center;
-  background-color: rgba(0,0,0,0.8);
-  padding:          40px 0px;
+$gap_size:20px;
+.cardContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $gap_size;
+  margin-bottom: 1rem;
 }
 
-.exploreLink{
-  padding:        20px 50px;
-  border:         2px solid white;
-  border-radius:  5px;
-  text-align:     center;
-  cursor:         pointer;
-  transition:     0.5s;
+.card{
+  position: relative;
+  flex: 0 0 calc(50% - $gap_size/2);
+  aspect-ratio: 93 / 34;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-color: #323232;
+  cursor: pointer;
+  user-select: none;
   &:hover{
-    background-color: white;
-    & .exploreLinkText {
-      @include gradient-text;
-    }
+    animation: card-scroll 3s;
+  }
+  & h3{
+    position: absolute;
+    left: 0;
+    bottom:0;
+    margin: 1rem;
+    @include gradient-text;
   }
 }
 
-.exploreLinkText{
-  color:  white;
-  margin:   0;
+.slice{
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  clip-path: path('M601.316 364.575C600.741 362.783 600.43 360.874 600.43 358.892C600.43 357.032 600.703 355.237 601.212 353.543L114.601 0C42.4439 101.23 0 225.104 0 358.892C0 492.798 42.5196 616.774 114.794 718.054L601.316 364.575Z');
 }
+
+.sliceContainer{
+  position: absolute;
+  right: 50%;
+  width: 602px;
+  height: 719px;
+  filter: drop-shadow(0 0 2rem #BF55EC);
+}
+
+.roulette{
+  position: absolute;
+  right: -15%;
+  top: -10%;
+  display:  flex;
+  justify-content: center;
+  align-items:  center;
+  width: 1238px;
+  aspect-ratio: 1 / 1;
+  animation: roulete-spin 4s ease infinite;
+  @media(max-width: 600px){
+    left: 0;
+    top:0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes roulete-spin {
+
+  50%{
+    transform: rotate(504deg) scale(1.3);
+  }
+  70%{
+    transform: rotate(504deg) scale(1.3);
+  }
+  to {
+    transform: rotate(720deg) scale(1);
+  }
+}
+
+@keyframes card-scroll{
+  33%{
+    background-position: 50% 100%;
+  }
+
+  66%{
+    background-position: 50% 0%;
+  }
+
+  100%{
+    background-position: 50% 50%;
+  }
+ }
+ 

@@ -9,7 +9,6 @@ const HeroFlipper = ({images=[]})=>{
     const [cur, setCur]                 = useState(0);
 
     useEffect(()=>{
-
         const interval = setInterval(()=>{
             setFlip(x=>!x);
             setTimeout(()=>{
@@ -17,7 +16,6 @@ const HeroFlipper = ({images=[]})=>{
                 setBuffer(x=>!x);
             },800);
         }, 3000);
-
         return ()=> clearInterval(interval);
     },[]);
 
@@ -26,7 +24,7 @@ const HeroFlipper = ({images=[]})=>{
 
     return (
         <>
-            <img className={styles.backgroundImage} src={images[frontBuffer].url}/>
+            <img className={styles.backgroundImage} src={images[frontBuffer]}/>
             <div className={styles.coverCard}
                 style={{
                     transform: `rotateX(${(+flip)*180}deg)`,
@@ -34,13 +32,13 @@ const HeroFlipper = ({images=[]})=>{
             >
                 <div className={styles.coverCardFace}
                     style={{
-                        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https:${images[buffer ? frontBuffer : backBuffer].url})`,
+                        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url(https:${images[buffer ? frontBuffer : backBuffer]})`,
                     }}
                 >
                 </div>
                 <div className={`${styles.coverCardFace} ${styles.coverCardBackFace}`}
                     style={{
-                        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https:${images[buffer ? backBuffer : frontBuffer].url})`,
+                        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url(https:${images[buffer ? backBuffer : frontBuffer]})`,
                     }}
                 >
                 </div>

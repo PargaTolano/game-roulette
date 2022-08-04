@@ -1,6 +1,6 @@
 @import './mixins.scss';
 
-$height:    100px;
+$height:    80px;
 $height2:   calc( $height * 0.7);
 
 .nav{
@@ -35,6 +35,18 @@ $height2:   calc( $height * 0.7);
     }
 }
 
+.logo{
+    position:       absolute;
+    left:           0;
+    height:         100%;
+    padding:        20px;
+    cursor:         pointer;
+    user-select:    none;
+    @media screen and (max-width: 768px){
+        left: unset;
+    }
+}
+
 .menuIcon{
     position:       absolute;
     display:        none;
@@ -56,6 +68,9 @@ $height2:   calc( $height * 0.7);
     gap:            10px;
     @media screen and (max-widtH: 768px){
         display: flex;
+    }
+    & p{
+        user-select: none;
     }
 }
 
@@ -138,7 +153,7 @@ $height2:   calc( $height * 0.7);
 
 .pfp{
     width:          50px;
-    height:         50px;
+    aspect-ratio:   1 / 1;
     border-radius:  50%;
     object-fit:     cover;
     cursor:         pointer;

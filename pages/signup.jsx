@@ -1,13 +1,11 @@
+import Head                                 from 'next/head';
 import { useRouter }                        from 'next/router';
 import React, { useState }                  from 'react';
-
 import { createUserWithEmailAndPassword }   from 'firebase/auth';
 import { auth }                             from '../firebase/clientApp';
-
 import Footer                               from '../components/Footer';
 import GradientInput                        from '../components/GradientInput';
 import GradientShiftButton                  from '../components/GradientShiftButton';
-
 import styles                               from '../styles/Login.module.scss';
 
 const Signup = () => {
@@ -35,6 +33,9 @@ const Signup = () => {
 
     return (
         <div className={styles.page}>
+            <Head>
+                <title>Game Roulette - Sign Up</title>
+            </Head>
             <main className={styles.main}>
                 <form 
                     className   ={styles.form} 

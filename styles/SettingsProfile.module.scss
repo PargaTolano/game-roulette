@@ -1,0 +1,39 @@
+.profileImageContainer{
+    position:           relative;
+    display:            flex;
+    width: 	            7.5rem;
+    height: 	        7.5rem;
+    justify-content:    center;
+    align-items:        center;
+    margin:             2.5rem auto 0 auto;
+}
+.profileImage{
+    width:          100%;
+    height:         100%;
+    border-radius:  50%;
+    object-fit:     cover;
+}
+
+.editButton{
+    position:           absolute;
+    right:              0;
+    bottom:             0;
+    width:              2rem;
+    height:             2rem;
+    border:             none;
+    border-radius:      50%;
+    background-color:   #1C1C1C;
+    color:              white;
+    font-size:          1.25rem;
+    cursor:             pointer;
+}
+
+.fileInput{
+    display: none;
+}
+
+.penIcon{
+    @apply editButton;
+    right: 0;
+    bottom: unset;
+}

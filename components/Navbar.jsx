@@ -15,24 +15,22 @@ const Navbar = () => {
         isShown,
         setIsShown, 
         user
-    }   = useNavbar();
+    }=useNavbar();
 
-    const onClickMenuButton = ()=>{
-        setIsShown(x=>!x);
-    };
+    const onClickMenuButton= ()=> void setIsShown(x=>!x);
 
     return (
         <nav className={styles.nav}>
             <div className={styles.navContent}>
                 <MdMenu className={styles.menuIcon} onClick={onClickMenuButton}/>
                 <Link href='/'>
-                    <h2 className={styles.h2}>Game Roulette</h2>
+                    <img className={styles.logo} src="/logo-gradient.svg" alt="logo"/>
                 </Link>
                 <ul className={`${styles.links} ${isShown && styles.active}`}> 
                     <section className={styles.menuIconHeader}>
                         <MdMenuOpen className={styles.menuIconList} onClick={onClickMenuButton} >
                         </MdMenuOpen>
-                        Game Roulette
+                        <p>Game Roulette</p>
                     </section>
                     <Link href="/">
                         <li className={styles.link}>
@@ -62,10 +60,12 @@ const Navbar = () => {
                     {
                         user
                         ?
-                            <img
-                                className={styles.pfp}
-                                src={ user.photoURL || '/profile-pic.svg'}
-                            />
+                            <Link href='/account'>
+                                <img
+                                    className={styles.pfp}
+                                    src={ user.photoURL || '/profile-pic.svg'}
+                                />
+                            </Link>
                         :
                             <Link href='/login'>
                                 <button className={styles.loginButton}>

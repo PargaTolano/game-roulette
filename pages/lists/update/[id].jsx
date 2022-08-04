@@ -15,18 +15,6 @@ import createList from '../../db/createList';
 import { List } from '../../db/model/FirestoreList';
 import { auth } from '../../firebase/clientApp';
 
-/*
-    gameData: {
-        id:                 number,
-        name:               string,
-        first_release_data: string,
-        thumb:              string,
-        cover:{
-            id:     number,
-            url:    string
-        }
-    }
-*/
 const SearchCard = ({data, onClick})=>{
     return (
         <div 
@@ -66,7 +54,7 @@ const SelectedCard = ({data, onClose})=>{
     );
 };
 
-const CreateList = () => {
+const UpdateList = () => {
     const [state, setState] = useState({
         name:           '',
         description:    '',
@@ -127,7 +115,7 @@ const CreateList = () => {
                 }}>
                 </div>
                 <h1 className={styles.h1}>
-                    Create New List
+                    Edit List
                 </h1>
                 <form 
                     className={styles.form}
@@ -201,4 +189,4 @@ const CreateList = () => {
     )
 }
 
-export default CreateList;
+export default UpdateList;

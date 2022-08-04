@@ -1,3 +1,4 @@
+import Head             from 'next/head';
 import Link             from 'next/link';
 import React            from 'react'; 
 import Footer from '../../components/Footer';
@@ -20,6 +21,9 @@ const PlatformButton = ({platform})=>{
 const GameDetail = ({data}) => {
     return (
         <div className={styles.page}>
+            <Head>
+                <title> Game - {data.name}</title>
+            </Head>
             <Navbar/>
             <header className={styles.cover}>
                 <HeroFlipper images={data.screenshots}/>
@@ -29,7 +33,7 @@ const GameDetail = ({data}) => {
                     <div 
                         className={styles.gameBoxArt}
                         style={{
-                            backgroundImage: `url(https:${data.cover.url})`,
+                            backgroundImage: `url(https:${data.cover})`,
                         }}    
                     >
                     </div>
@@ -59,8 +63,7 @@ export default GameDetail;
 export async function getServerSideProps(context){
     try {
         const { params } = context;
-
-        const data = await getGame(params.id);
+        const data = await getGame(params.slug);
 
         return {
             props:{ data: data[0] }

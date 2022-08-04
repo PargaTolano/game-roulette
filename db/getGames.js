@@ -5,12 +5,10 @@ import auth         from './auth';
 const getGames = async (offset = 0)=>{
     const { access_token } = await auth(); 
 
-    const query = ` fields name, first_release_date, platforms.abbreviation, cover.url, total_rating;
-                    where rating > 30 &
-                    aggregated_rating_count > 0 &
-                    total_rating_count > 1 &
-                    version_parent = null;
-                    sort first_release_date desc;
+    const query = ` fields name, cover.url, first_release_date, total_rating_count, platforms.abbreviation, rating, total_rating, slug;
+                    where platforms = (48,49,130,6)
+                    & total_rating_count > 5;
+                    sort total_rating_count desc;
                     limit 12;
                     offset ${offset};`;
     

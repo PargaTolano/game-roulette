@@ -1,0 +1,28 @@
+.overlappingContainer{
+    display:            flex;
+    width:              100%;
+    max-width:          1440px;
+    margin:             -150px auto 0 auto;
+    flex-flow:          row wrap;
+    justify-content:    flex-start;
+    align-items:        flex-start;
+    gap:                10px;
+}
+
+.ocElement{
+    position:    relative;
+    $elementspr: 4;
+    $perc: calc( 100% / $elementspr);
+    $comp: calc( 10px * $elementspr);
+    width: calc( $perc - 7.5px );
+    padding-bottom:     $perc;
+}
+
+.ocElementContent{
+    position:           absolute;
+    top:                0;
+    left:               0;
+    width:              100%;
+    height:             100%;
+    background-color:   var(--background);
+}

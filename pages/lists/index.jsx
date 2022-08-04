@@ -1,6 +1,10 @@
+import Head                     from 'next/head';
 import Link                     from 'next/link';
 
-import React, { useEffect, useState }                    from 'react';
+import React, { 
+    useEffect, 
+    useState 
+} from 'react';
 
 import { 
     MdAdd
@@ -12,15 +16,14 @@ import useAuth                  from '../../hooks/useAuth';
 
 import styles                   from '../../styles/Lists.module.scss';
 
-const List = ({data, key})=>{
-
+const List = ({data})=>{
+    console.log(data);
     return (
         <Link href={`/lists/${data.id}`}>
             <div 
-                className={styles.list} 
-                key={key}
+                className={styles.list}
                 style={{
-                    backgroundImage: `url(https:${data.games[0].cover.url})`,
+                    // backgroundImage: `url(https:${data.games[0].cover.url})`,
                     backgroundSize:  'cover'
                 }}
             >
@@ -49,6 +52,9 @@ const Lists = ({data}) => {
 
     return(
         <>
+            <Head>
+                <title> My Lists </title>
+            </Head>
             <Navbar/>
             <h1>Lists</h1>
             <div className={styles.cardContainer}>

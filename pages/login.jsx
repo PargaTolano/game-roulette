@@ -1,5 +1,7 @@
+import Head                             from 'next/head';
 import Link                             from 'next/link';
 import { useRouter }                    from 'next/router';
+
 import React, { useState }              from 'react';
 
 import { signInWithEmailAndPassword }   from 'firebase/auth';
@@ -44,6 +46,9 @@ const Login = () => {
 
     return (
         <div className={styles.page}>
+            <Head>
+                <title>Game Roulette - Login</title>
+            </Head>
             <main className={styles.main}>
                 <form 
                     className={styles.form} 
