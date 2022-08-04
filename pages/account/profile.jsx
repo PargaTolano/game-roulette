@@ -9,6 +9,7 @@ import {
 
 import styles from '../../styles/SettingsSecurity.module.scss';
 import styles2 from '../../styles/SettingsProfile.module.scss';
+import Link from 'next/link';
 
 const Account = () => {
 
