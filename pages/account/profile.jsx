@@ -9,7 +9,6 @@ import {
 
 import styles from '../../styles/SettingsSecurity.module.scss';
 import styles2 from '../../styles/SettingsProfile.module.scss';
-import Link from 'next/link';
 
 const Account = () => {
 
@@ -35,51 +34,53 @@ const Account = () => {
                 <title> User Settings </title>
             </Head>
             <AccountNavbar/>
-            <h1 className={styles.title}>Profile</h1>
-            <div className={styles2.profileImageContainer}>
-                <input
-                    className={styles2.fileInput} 
-                    type='file' 
-                    name='imagefile'
-                    ref={ref}
-                    onChange={onChangeImage}
-                />
-                <img 
-                    src={img} 
-                    className={styles2.profileImage} 
-                />
-                <button 
-                    className={styles2.editButton} 
-                    onClick={onClickEdit}
-                >
-                    <MdEdit/>
-                </button>
-            </div>
-            <section className={styles.passwordSection}>
-                <div className={styles.textInputContainer}>
-                    <label htmlFor="username" className={styles.textInputLabel}>
-                        username
-                    </label>
-                    <input 
-                        type="text" 
-                        name="username" 
-                        className={styles.textInput}
-                        value='parga.tolano'
-                        disabled
+            <section>
+                <h1 className={styles.title}>Profile</h1>
+                <div className={styles2.profileImageContainer}>
+                    <input
+                        className={styles2.fileInput} 
+                        type='file' 
+                        name='imagefile'
+                        ref={ref}
+                        onChange={onChangeImage}
                     />
-                </div>
-                <div className={styles.textInputContainer}>
-                    <label htmlFor="email" className={styles.textInputLabel}>
-                        Email
-                    </label>
-                    <input 
-                        type="text" 
-                        name="email" 
-                        className={styles.textInput}
-                        value='parga.jose@outlook.com'
-                        disabled
+                    <img 
+                        src={img} 
+                        className={styles2.profileImage} 
                     />
+                    <button 
+                        className={styles2.editButton} 
+                        onClick={onClickEdit}
+                    >
+                        <MdEdit/>
+                    </button>
                 </div>
+                <section className={styles.passwordSection}>
+                    <div className={styles.textInputContainer}>
+                        <label htmlFor="username" className={styles.textInputLabel}>
+                            username
+                        </label>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            className={styles.textInput}
+                            value='parga.tolano'
+                            disabled
+                        />
+                    </div>
+                    <div className={styles.textInputContainer}>
+                        <label htmlFor="email" className={styles.textInputLabel}>
+                            Email
+                        </label>
+                        <input 
+                            type="text" 
+                            name="email" 
+                            className={styles.textInput}
+                            value='parga.jose@outlook.com'
+                            disabled
+                        />
+                    </div>
+                </section>
             </section>
         </div>
     )

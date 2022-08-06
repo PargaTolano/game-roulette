@@ -1,6 +1,9 @@
 .container{
     position:   fixed;
     z-index:    1;
+    @media (min-width: 768px){
+        display: none;
+    }
 }
 
 .navbarLimiter{

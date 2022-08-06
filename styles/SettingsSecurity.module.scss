@@ -5,6 +5,10 @@
     font-family:        'Inter var', sans-serif;
 }
 
+.unstyledForm{
+    all: unset;
+}
+
 .title{
     display:            flex;
     color:              black;
@@ -63,4 +67,14 @@
     background-color:   white;
     color:              #666666;
     font-size:          0.625rem;
+    transition:         background-color 0.3s;
+    cursor:             pointer;
+    &:hover{
+        background-color:   #AAAAAA;
+        color:              white;
+    }
+    &:active{
+        background-color:   #888888;
+        color:              white;        
+    }
 }

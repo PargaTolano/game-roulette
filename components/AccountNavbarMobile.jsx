@@ -26,7 +26,7 @@ const AccountNavbarMobile=()=>{
                             <Link href='/account/profile'>Profile</Link>
                         </li>
                         <li className={styles.menuLink}>
-                            <Link href='/account/security'>Security</Link>
+                            <Link href='/'>Security</Link>
                         </li>
                     </ul>
                 </div>

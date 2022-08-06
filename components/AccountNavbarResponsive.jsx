@@ -1,32 +1,33 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
-import {
-    MdMenu,
-    MdOutlineClose
-} from 'react-icons/md';
 
-import styles from '../styles/AccountNavbar.module.scss';
+import styles from '../styles/AccountNavbarResponsive.module.scss';
 
-const AccountNavbarMobile=()=>{
-    const [open, setOpen]=useState(false);
-    const onClickMenuIcon= ()=>void setOpen(x=>!x);
-    const IconComponent= open ? MdOutlineClose: MdMenu;
-    
+const AccountNavbarResponsive=()=>{
     return (
-        <div className={styles.container}>
-            <div 
-                className={styles.navbarLimiter} 
-                open={open}
-            >
-                <div className={styles.menuBackground}></div>
-            </div>
-            <div className={styles.iconContainer}>
-                <IconComponent
-                    className={styles.icon} 
-                    onClick={onClickMenuIcon}
-                />
-            </div>
-        </div>
+        <nav className={styles.container}>
+            <ul className={styles.links}>
+                <li 
+                    className={styles.link} 
+                    draggable={false}
+                >
+                    <Link href='/account/profile'>Profile</Link>
+                </li>
+                <li 
+                    className={styles.link} 
+                    draggable={false}
+                >
+                    <Link href='/account/security'>Security</Link>
+                </li>
+                <li 
+                    className={styles.link} 
+                    draggable={false}
+                >
+                    <Link href='/account/security'>Exit</Link>
+                </li>
+            </ul>
+        </nav>
     );
 };
 
-export default AccountNavbarMobile;
+export default AccountNavbarResponsive;

@@ -1,0 +1,14 @@
+.formErrorList{
+    display:    flex;
+    flex-flow:  column nowrap;
+    margin:     0;
+    padding:    0 0 0 1ch;
+}
+
+.formError{
+    font-size: 0.625rem;
+    color: var(--primary);
+    &::first-letter{
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,34 @@
+.container{
+    display:    inline-block;
+    float:      left;
+    height:     100vh;
+    margin:     0;
+    padding:    0;
+    @media (max-width: 767px){
+        display: none;
+    }
+}
+
+.links{
+    display:            flex;
+    width:              10rem;
+    margin:             3.625rem 0 0 0;
+    padding:            0 1rem;
+    border-right:       2px solid #AAAAAA;
+    flex-flow:          column nowrap;
+    justify-content:    flex-start;
+    align-items:        flex-end;
+    list-style:         none;
+    gap:                1rem;
+}
+
+@mixin settings-navbar-link{
+    color: #666666;
+    &:hover{
+        color: #888888
+    }
+}
+
+.link{
+    @include settings-navbar-link();
+}
