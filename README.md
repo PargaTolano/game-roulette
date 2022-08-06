@@ -43,7 +43,7 @@ In order to run the project you need to build it first via npm or yarn.
     yarn run build
 ```
 
-Run it with nom or yarn
+Run it with npm or yarn
 #### npm ####
 ```bash
     npm run start
