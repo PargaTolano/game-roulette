@@ -1,20 +1,22 @@
 import Head     from 'next/head';
-import React, { useState }    from 'react';
+import React, { useState } from 'react';
 import AccountNavbar from '../../components/AccountNavbar';
-import changeEmail from '../../auth/changeEmail';
-// import { auth } from '../firebase/clientApp';
+import useAuth from '../../hooks/useAuth';
+
+import changePassword from '../../auth/changePassword';
 
 import styles from '../../styles/SettingsSecurity.module.scss';
 import commonStyles from '../../styles/Common.module.scss';
-import { emailregex } from '../../constants/regex';
 
 const Account = () => {
 
+    const user = useAuth();
+
     const [errorList, setErrorList]=useState([]);
 
-    const [{email, email2}, setState]=useState({
-        email:'',
-        email2:''
+    const [{pass, pass2}, setState]=useState({
+        pass:'',
+        pass2:''
     });
 
     const onChange = e =>{
@@ -27,16 +29,12 @@ const Account = () => {
         
         const errors=[];
 
-        if(email.length==0){
-            errors.push('email cannot be empty');
+        if(pass.length==0){
+            errors.push('password cannot be empty');
         }
 
-        if(String(email).toLowerCase().match(emailregex)===null){
-            errors.push('enter a proper email format');
-        }
-
-        if(email!==email2){
-            errors.push('email confirmation must match new email');
+        if(pass!==pass2){
+            errors.push('password confirmation must match new password');
         }
 
         if(errors.length!==0){
@@ -44,12 +42,15 @@ const Account = () => {
             return;
         }
 
-        // changeEmail(email);
-        setState(x=>{
-            const t={};
-            Object.keys(x).forEach(key=>t[key]='');
-            return t;
-        });
+        changePassword(pass)
+            .then(()=>alert("Password Updated Successfuly"))
+            .finally(()=>
+                setState(x=>{
+                    const t={};
+                    Object.keys(x).forEach(key=>t[key]='');
+                    return t;
+                })
+            );
     };
 
     return (
@@ -67,25 +68,25 @@ const Account = () => {
                     <section className={styles.passwordSection}>
                         <h3 className={styles.sectionTitle}>Change Email</h3>
                         <div className={styles.textInputContainer}>
-                            <label htmlFor='email' className={styles.textInputLabel}>
-                                New Email
+                            <label htmlFor='pass' className={styles.textInputLabel}>
+                                New Password
                             </label>
                             <input 
-                                type='email'
-                                name='email'
-                                value={email}
+                                type='password'
+                                name='pass'
+                                value={pass}
                                 className={styles.textInput}
                                 onChange={onChange}
                             />
                         </div>
                         <div className={styles.textInputContainer}>
-                            <label htmlFor='email2' className={styles.textInputLabel}>
-                                Confirm Email
+                            <label htmlFor='pass2' className={styles.textInputLabel}>
+                                Confirm Password
                             </label>
                             <input 
-                                type='email'
-                                name='email2'
-                                value={email2}
+                                type='password'
+                                name='pass2'
+                                value={pass2}
                                 className={styles.textInput}
                                 onChange={onChange}
                             />

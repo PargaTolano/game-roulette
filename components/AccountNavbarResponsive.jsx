@@ -23,7 +23,7 @@ const AccountNavbarResponsive=()=>{
                     className={styles.link} 
                     draggable={false}
                 >
-                    <Link href='/account/security'>Exit</Link>
+                    <Link href='/'>Exit</Link>
                 </li>
             </ul>
         </nav>

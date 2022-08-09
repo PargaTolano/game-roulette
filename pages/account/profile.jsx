@@ -1,24 +1,24 @@
-import Head     from 'next/head';
-import React, { useRef, useState }    from 'react';
-import AccountNavbar from '../../components/AccountNavbar';
+import Head from 'next/head';
+import React, { useRef, useState } from 'react';
 
-import {
-    MdEdit
-} from 'react-icons/md'
-// import { auth } from '../firebase/clientApp';
+import AccountNavbar from '../../components/AccountNavbar';
+import EditableInput from '../../components/form/EditableInput';
+
+import useAuth from '../../hooks/useAuth';
+
+import { MdEdit } from 'react-icons/md';
 
 import styles from '../../styles/SettingsSecurity.module.scss';
 import styles2 from '../../styles/SettingsProfile.module.scss';
+import changeDisplayname from '../../auth/changeDisplayname';
+import changeEmail from '../../auth/changeEmail';
 
 const Account = () => {
+    
+    const user = useAuth();
 
     const [img, setImg] = useState('/profile-pic.svg');
     const ref = useRef();
-
-    const onSubmit = (e)=>{
-        e.preventDefault();
-        const fd = new FormData(e.target);
-    };
 
     const onClickEdit=()=>void ref.current?.click();
 
@@ -27,6 +27,9 @@ const Account = () => {
         const url=URL.createObjectURL(file);
         setImg(url);
     };
+
+    const onChangeDisplayName=name=>changeDisplayname(name);
+    const onChangeEmail=email=>changeEmail(email);
 
     return (
         <div className={styles.container}>
@@ -56,30 +59,16 @@ const Account = () => {
                     </button>
                 </div>
                 <section className={styles.passwordSection}>
-                    <div className={styles.textInputContainer}>
-                        <label htmlFor="username" className={styles.textInputLabel}>
-                            username
-                        </label>
-                        <input 
-                            type="text" 
-                            name="username" 
-                            className={styles.textInput}
-                            value='parga.tolano'
-                            disabled
-                        />
-                    </div>
-                    <div className={styles.textInputContainer}>
-                        <label htmlFor="email" className={styles.textInputLabel}>
-                            Email
-                        </label>
-                        <input 
-                            type="text" 
-                            name="email" 
-                            className={styles.textInput}
-                            value='parga.jose@outlook.com'
-                            disabled
-                        />
-                    </div>
+                    <EditableInput 
+                        name='Display Name' 
+                        initialValue={user?.displayName ?? 'Anonymous'}
+                        onConfirm={onChangeDisplayName}
+                    />
+                    <EditableInput 
+                        name='Email' 
+                        initialValue={user?.email ?? 'Anonymous'}
+                        onConfirm={onChangeEmail}
+                    />
                 </section>
             </section>
         </div>

@@ -74,7 +74,7 @@ export default function Home({data}) {
       <Navbar/>
       <header className={styles.cover}>
         <h1 className={styles.h1}>
-          <img className={styles.logoCoverC} src="/logo-gradient.svg" alt="logo"/>
+          <img className={styles.logoCover} src="/logo-gradient.svg" alt="logo"/>
           <p>game roulette</p>
         </h1>
         <Roulette games={data?.slice(0,5)}/>
@@ -85,14 +85,14 @@ export default function Home({data}) {
             <span className={styles.gradient}>Browse</span> Games, <span className={styles.gradient}>Make</span> Playlists, <span className={styles.gradient}>Spin</span> The Wheel
           </h2>
           <div className={styles.cardContainer}>
-            {data?.map((x,i)=><Card key={x.id} data={x}/>)}
+            {data?.map(x=><Card key={x.id} data={x}/>)}
           </div>
         </div>
       </main>
       <Footer/>
     </div>
-  )
-}
+  );
+};
 
 export async function getServerSideProps(){
   try {

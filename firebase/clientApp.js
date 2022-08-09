@@ -18,6 +18,12 @@ if( firebase.getApps().length === 0 )
 
 export default app;
 
-export const auth = getAuth();
+const auth = getAuth();
+auth.signOut();
 
-export const db = getFirestore();
+const db = getFirestore();
+
+export {
+    auth,
+    db,
+}
