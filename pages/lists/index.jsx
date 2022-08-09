@@ -17,7 +17,6 @@ import useAuth                  from '../../hooks/useAuth';
 import styles                   from '../../styles/Lists.module.scss';
 
 const List = ({data})=>{
-    console.log(data);
     return (
         <Link href={`/lists/${data.id}`}>
             <div 

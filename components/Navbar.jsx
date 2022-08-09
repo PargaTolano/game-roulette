@@ -60,7 +60,7 @@ const Navbar = () => {
                     {
                         user
                         ?
-                            <Link href='/account'>
+                            <Link href='/account/profile'>
                                 <img
                                     className={styles.pfp}
                                     src={ user.photoURL || '/profile-pic.svg'}
