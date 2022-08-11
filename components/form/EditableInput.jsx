@@ -53,14 +53,14 @@ const EditableInput = ({name='', type='text', initialValue='', onConfirm, ...res
                         className={styles.button}
                         onClick={onClickConfirm}    
                     >
-                        <MdCheck/>
+                        <MdCheck className={styles.icon}/>
                     </button>
                 }
                 <button 
                     className={styles.button} 
                     onClick={onClickToggleEnable}
                 >
-                    <Icon/>
+                    <Icon className={styles.icon}/>
                 </button>
             </div>
         </div>

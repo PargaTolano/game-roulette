@@ -1,4 +1,4 @@
-import { getAuth }      from 'firebase/auth';
+import { getAuth, setPersistence }      from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from '@firebase/app';
 import * as firebase from 'firebase/app';
@@ -19,8 +19,6 @@ if( firebase.getApps().length === 0 )
 export default app;
 
 const auth = getAuth();
-auth.signOut();
-
 const db = getFirestore();
 
 export {

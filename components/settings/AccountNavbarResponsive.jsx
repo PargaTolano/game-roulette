@@ -1,9 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
 
-import styles from '../styles/AccountNavbarResponsive.module.scss';
+import useAuth from '../../hooks/auth';
+
+import styles from '../../styles/AccountNavbarResponsive.module.scss';
 
 const AccountNavbarResponsive=()=>{
+
+    const {logout}=useAuth();
+
     return (
         <nav className={styles.container}>
             <ul className={styles.links}>
@@ -24,6 +29,12 @@ const AccountNavbarResponsive=()=>{
                     draggable={false}
                 >
                     <Link href='/'>Exit</Link>
+                </li>
+                <li 
+                    className={styles.link} 
+                    onClick={logout}
+                >
+                    Logout
                 </li>
             </ul>
         </nav>

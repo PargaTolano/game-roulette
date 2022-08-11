@@ -1,17 +1,20 @@
 import Head     from 'next/head';
 import React, { useState } from 'react';
-import AccountNavbar from '../../components/AccountNavbar';
-import useAuth from '../../hooks/useAuth';
+
+import AccountNavbar from '../../components/settings/AccountNavbar';
+import LoadingIdle from '../../components/loading/LoadingIdle';
 
 import changePassword from '../../auth/changePassword';
 
 import styles from '../../styles/SettingsSecurity.module.scss';
 import commonStyles from '../../styles/Common.module.scss';
+import { withProtected } from '../../hooks/routes';
 
-const Account = () => {
+const Security = ({auth}) => {
 
-    const user = useAuth();
+    const {user} = auth;
 
+    const [loading, setLoading]=useState(false);
     const [errorList, setErrorList]=useState([]);
 
     const [{pass, pass2}, setState]=useState({
@@ -41,16 +44,18 @@ const Account = () => {
             setErrorList(errors);
             return;
         }
-
+        setLoading(true);
         changePassword(pass)
             .then(()=>alert("Password Updated Successfuly"))
-            .finally(()=>
+            .catch(e=>void alert(e.message))
+            .finally(()=>{
+                setLoading(false);
                 setState(x=>{
                     const t={};
                     Object.keys(x).forEach(key=>t[key]='');
                     return t;
                 })
-            );
+        });
     };
 
     return (
@@ -59,6 +64,7 @@ const Account = () => {
                 <title> User Settings </title>
             </Head>
             <AccountNavbar/>
+            <LoadingIdle active={loading}/>
             <section>
                 <h1 className={styles.title}>Security</h1>
                 <form
@@ -66,13 +72,13 @@ const Account = () => {
                         onSubmit={onSubmit} 
                 >
                     <section className={styles.passwordSection}>
-                        <h3 className={styles.sectionTitle}>Change Email</h3>
+                        <h3 className={styles.sectionTitle}>Change Password</h3>
                         <div className={styles.textInputContainer}>
                             <label htmlFor='pass' className={styles.textInputLabel}>
                                 New Password
                             </label>
                             <input 
-                                type='password'
+                                type='password' 
                                 name='pass'
                                 value={pass}
                                 className={styles.textInput}
@@ -81,7 +87,7 @@ const Account = () => {
                         </div>
                         <div className={styles.textInputContainer}>
                             <label htmlFor='pass2' className={styles.textInputLabel}>
-                                Confirm Password
+                                Confirm New Password
                             </label>
                             <input 
                                 type='password'
@@ -110,4 +116,4 @@ const Account = () => {
     )
 }
 
-export default Account;
+export default withProtected(Security);

@@ -14,15 +14,19 @@
     object-fit:     cover;
     box-shadow:     0px 3px 5px #666666;
 }
-
+ 
+$button-size: 2rem;
 .editButton{
+    display:            flex;
     position:           absolute;
     right:              0;
     bottom:             0;
-    width:              2rem;
-    height:             2rem;
+    width:              $button-size;
+    height:             $button-size;
     border:             none;
     border-radius:      50%;
+    justify-content:    center;
+    align-items:        center;
     background-color:   #1C1C1C;
     color:              white;
     font-size:          1.25rem;

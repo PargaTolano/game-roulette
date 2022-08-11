@@ -1,4 +1,4 @@
-import { updatePassword} from 'firebase/auth';
+import { updatePassword } from 'firebase/auth';
 import { auth } from '../firebase/clientApp';
 
 const changePassword = (password)=>{
@@ -6,7 +6,7 @@ const changePassword = (password)=>{
     if(user===null)
         return;
 
-    return updatePassword(user, password);    
+    return updatePassword(user, password);
 };
 
 export default changePassword;

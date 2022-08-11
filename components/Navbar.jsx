@@ -5,6 +5,7 @@ import {
     MdMenu,
     MdMenuOpen
 } from 'react-icons/md';
+import useAuth from '../hooks/auth';
 import useNavbar from '../hooks/useNavbar';
 
 import styles from '../styles/Navbar.module.scss';
@@ -13,9 +14,10 @@ const Navbar = () => {
 
     const {
         isShown,
-        setIsShown, 
-        user
+        setIsShown
     }=useNavbar();
+
+    const {user} = useAuth();
 
     const onClickMenuButton= ()=> void setIsShown(x=>!x);
 
@@ -43,7 +45,7 @@ const Navbar = () => {
                         </li>
                     </Link>
                     {
-                        user && 
+                        user!==null && 
                         <Link href="/lists">
                             <li className={styles.link}>
                                 My Lists
@@ -58,7 +60,7 @@ const Navbar = () => {
                 </ul>
                 <div className={styles.loginContainer}>
                     {
-                        user
+                        user!==null
                         ?
                             <Link href='/account/profile'>
                                 <img

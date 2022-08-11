@@ -25,21 +25,29 @@
     user-select:        none;
 }
 
+
+$button-size: 1.75rem;
 .buttonContainer{
     display:            flex;
     position:           absolute;
-    right:              -0.75rem;
-    bottom:             -0.75rem;
+    right:              calc($button-size / -2);
+    bottom:             calc($button-size / -2);
     gap:                0.25rem;
 }
 
 .button{
-    width:              1.5rem;
-    height:             1.5rem;
+    display:            flex;
+    width:              $button-size;
+    height:             $button-size;
     border:             none;
     border-radius:      50%;
+    justify-content:    center;
+    align-items:        center;
     background-color:   #1C1C1C;
     color:              white;
-    font-size:          1rem;
     cursor:             pointer;
+}
+
+.icon{
+    font-size: 2rem;
 }

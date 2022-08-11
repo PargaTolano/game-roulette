@@ -1,21 +1,22 @@
 import Head from 'next/head';
 import React, { useRef, useState } from 'react';
 
-import AccountNavbar from '../../components/AccountNavbar';
+import AccountNavbar from '../../components/settings/AccountNavbar';
 import EditableInput from '../../components/form/EditableInput';
-
-import useAuth from '../../hooks/useAuth';
 
 import { MdEdit } from 'react-icons/md';
 
-import styles from '../../styles/SettingsSecurity.module.scss';
-import styles2 from '../../styles/SettingsProfile.module.scss';
 import changeDisplayname from '../../auth/changeDisplayname';
 import changeEmail from '../../auth/changeEmail';
 
-const Account = () => {
+import styles from '../../styles/SettingsSecurity.module.scss';
+import styles2 from '../../styles/SettingsProfile.module.scss';
+import { withProtected, withPublic } from '../../hooks/routes';
+
+const Profile = ({auth}) => {
     
-    const user = useAuth();
+    const {user} = auth;
+    console.log(user);
 
     const [img, setImg] = useState('/profile-pic.svg');
     const ref = useRef();
@@ -75,4 +76,4 @@ const Account = () => {
     )
 }
 
-export default Account;
+export default withProtected(Profile);

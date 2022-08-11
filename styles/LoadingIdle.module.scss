@@ -1,0 +1,49 @@
+.container{
+    position:           fixed;
+    display:            none;
+    top:                0;
+    left:               0;
+    width:              100vw;
+    height:             100vh;
+    background-color: rgba(0,0,0,0.8);
+    z-index:            1;
+    justify-content:    center;
+    align-items:        center;
+    overflow:           hidden;
+    perspective:        100;
+    transform-style:    preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    &[data-active="true"]{
+        display: flex;
+    }
+}
+
+$animation-duration: 1.5s;
+.cube{
+    --shadow-color:     var(--secondary);
+    position:           absolute;
+    width:              5rem;
+    height:             5rem;
+    background-color:   #1C1C1C00;
+    border-radius:      0.125rem;
+    box-shadow:         0 0 0.5rem white, 0 0 0.5rem 0.5rem var(--shadow-color);
+    animation:          cube-rotate $animation-duration calc($animation-duration / 2 * var(--idx)) infinite;
+    &:nth-child(odd){
+        --shadow-color: var(--primary);
+    }
+}
+
+@keyframes cube-rotate {
+
+    0%{
+        transform:rotate(0deg) translateZ(-50px);
+    }
+
+    50%{
+        transform:rotate(180deg) translateZ(50px);
+    }
+
+    100%{
+        transform:rotate(360deg) translateZ(-50px);
+    }
+}

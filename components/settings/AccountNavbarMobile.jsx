@@ -1,13 +1,17 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
+import useAuth from '../../hooks/auth';
+
 import {
     MdMenu,
     MdOutlineClose
 } from 'react-icons/md';
 
-import styles from '../styles/AccountNavbarMobile.module.scss';
+import styles from '../../styles/AccountNavbarMobile.module.scss';
 
 const AccountNavbarMobile=()=>{
+    const {logout}=useAuth();
+
     const [open, setOpen]=useState(false);
     const onClickMenuIcon= ()=>void setOpen(x=>!x);
     const IconComponent= open ? MdOutlineClose: MdMenu;
@@ -30,6 +34,12 @@ const AccountNavbarMobile=()=>{
                         </li>
                         <li className={styles.menuLink}>
                             <Link href='/'>Exit</Link>
+                        </li>
+                        <li 
+                            className={styles.menuLink}
+                            onClick={logout}
+                        >
+                            Logout
                         </li>
                     </ul>
                 </div>

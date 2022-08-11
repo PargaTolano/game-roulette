@@ -1,19 +1,19 @@
-import Head                             from 'next/head';
-import Link                             from 'next/link';
-import { useRouter }                    from 'next/router';
+import Head from 'next/head';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-import React, { useState }              from 'react';
+import React, { useState } from 'react';
 
-import { signInWithEmailAndPassword }   from 'firebase/auth';
-import { auth }                         from '../firebase/clientApp';
+import Footer from '../components/Footer';
+import GradientInput from '../components/GradientInput';
+import GradientShiftButton from '../components/GradientShiftButton';
 
-import Footer                           from '../components/Footer';
-import GradientInput                    from '../components/GradientInput';
-import GradientShiftButton              from '../components/GradientShiftButton';
+import styles from '../styles/Login.module.scss';
+import { withPublic } from '../hooks/routes';
 
-import styles                           from '../styles/Login.module.scss';
-
-const Login = () => {
+const Login = ({auth}) => {
+    const { login, error }=auth;
+    console.log(auth);
 
     const router = useRouter();
 
@@ -34,11 +34,9 @@ const Login = () => {
         e.preventDefault();
 
         try{
-            const res = await signInWithEmailAndPassword(auth, state.username, state.password);
-            
-            if(res.user){
-                router.push('/lists');
-            }
+            console.log('logging in...');
+            const user = await login(state.username, state.password);
+            console.log(user);
         } catch(e){
             alert(e)
         }
@@ -93,4 +91,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default withPublic(Login);
