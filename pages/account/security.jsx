@@ -1,14 +1,14 @@
-import Head     from 'next/head';
+import Head from 'next/head';
 import React, { useState } from 'react';
+import { withProtected } from '../../hooks/routes';
 
 import AccountNavbar from '../../components/settings/AccountNavbar';
 import LoadingIdle from '../../components/loading/LoadingIdle';
 
-import changePassword from '../../auth/changePassword';
+import { AuthService } from '../../service/AuthService';
 
 import styles from '../../styles/SettingsSecurity.module.scss';
 import commonStyles from '../../styles/Common.module.scss';
-import { withProtected } from '../../hooks/routes';
 
 const Security = ({auth}) => {
 
@@ -45,7 +45,7 @@ const Security = ({auth}) => {
             return;
         }
         setLoading(true);
-        changePassword(pass)
+        AuthService.changePassword(pass)
             .then(()=>alert("Password Updated Successfuly"))
             .catch(e=>void alert(e.message))
             .finally(()=>{

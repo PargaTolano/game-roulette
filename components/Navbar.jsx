@@ -1,5 +1,5 @@
 import Link     from 'next/link';
-import React    from 'react';
+import React, { useState }    from 'react';
 
 import {
     MdMenu,
@@ -10,6 +10,8 @@ import useNavbar from '../hooks/useNavbar';
 
 import styles from '../styles/Navbar.module.scss';
 
+const defaultImage='/profile-pic.svg';
+
 const Navbar = () => {
 
     const {
@@ -18,6 +20,8 @@ const Navbar = () => {
     }=useNavbar();
 
     const {user} = useAuth();
+
+    const [img, setImg]= useState(user?.photoURL);
 
     const onClickMenuButton= ()=> void setIsShown(x=>!x);
 
@@ -65,7 +69,8 @@ const Navbar = () => {
                             <Link href='/account/profile'>
                                 <img
                                     className={styles.pfp}
-                                    src={ user.photoURL || '/profile-pic.svg'}
+                                    src={img}
+                                    onError={()=>setImg(defaultImage)}
                                 />
                             </Link>
                         :

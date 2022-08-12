@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import React, { useRef, useState } from 'react';
 
 import AccountNavbar from '../../components/settings/AccountNavbar';
@@ -6,31 +7,44 @@ import EditableInput from '../../components/form/EditableInput';
 
 import { MdEdit } from 'react-icons/md';
 
-import changeDisplayname from '../../auth/changeDisplayname';
-import changeEmail from '../../auth/changeEmail';
-
 import styles from '../../styles/SettingsSecurity.module.scss';
 import styles2 from '../../styles/SettingsProfile.module.scss';
-import { withProtected, withPublic } from '../../hooks/routes';
+import { withProtected } from '../../hooks/routes';
+import { AuthService } from '../../service/AuthService';
+import { StorageService } from '../../service/StorageService';
+
+const defaultImage='/profile-pic.svg';
 
 const Profile = ({auth}) => {
     
     const {user} = auth;
-    console.log(user);
 
-    const [img, setImg] = useState('/profile-pic.svg');
+    const [img, setImg] = useState(user.photoURL);
+    const [uploadPercentage, setUploadPercentage] = useState(0);
     const ref = useRef();
 
     const onClickEdit=()=>void ref.current?.click();
 
-    const onChangeImage=e=>{
+    const onChangeImage=async e=>{
         const [file]=e.target.files;
-        const url=URL.createObjectURL(file);
-        setImg(url);
+
+        try{
+            // if(user.photoURL){
+            //     await StorageService.removeFile(`/${user.uid}`)
+            // }
+            const url = await StorageService.storeFile(file, setUploadPercentage);
+            await AuthService.changephotoURL(url);
+            setImg(url);
+        }
+        catch(e){
+            alert(e);
+        }
     };
 
-    const onChangeDisplayName=name=>changeDisplayname(name);
-    const onChangeEmail=email=>changeEmail(email);
+    const onImageLoaded=()=>setUploadPercentage(0);
+
+    const onChangeDisplayName=name=>AuthService.changeDisplayname(name);
+    const onChangeEmail=email=>AuthService.changeEmail(email);
 
     return (
         <div className={styles.container}>
@@ -50,8 +64,16 @@ const Profile = ({auth}) => {
                     />
                     <img 
                         src={img} 
-                        className={styles2.profileImage} 
+                        className={styles2.profileImage}
+                        onLoad={onImageLoaded}
+                        onError={()=>setImg(defaultImage)}
                     />
+                    <div 
+                        className={styles2.imgLoading}
+                        style={{
+                            transform: `scale(${uploadPercentage}%)`
+                        }}
+                    ></div>
                     <button 
                         className={styles2.editButton} 
                         onClick={onClickEdit}
@@ -75,5 +97,7 @@ const Profile = ({auth}) => {
         </div>
     )
 }
+
+const DynamicProfile = dynamic(()=>withProtected(Profile), {ssr:false});
 
 export default withProtected(Profile);

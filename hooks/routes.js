@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import useAuth from './auth';
 
 export const withPublic = (Component)=>{   
-    return props=>{
+    return function WithPublic(props){
 
         const auth= useAuth();
         const router = useRouter();
@@ -21,8 +21,7 @@ export const withPublic = (Component)=>{
 };
 
 export const withProtected = (Component)=>{   
-    return props=>{
-
+    return function WithProtected(props){
         const auth= useAuth();
         const router = useRouter();
 

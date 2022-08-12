@@ -2,6 +2,7 @@ import { getAuth, setPersistence }      from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from '@firebase/app';
 import * as firebase from 'firebase/app';
+import { getStorage } from 'firebase/storage';
 
 const clientCredentials = {
     apiKey:             process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -20,8 +21,10 @@ export default app;
 
 const auth = getAuth();
 const db = getFirestore();
+const storage = getStorage();
 
 export {
     auth,
     db,
+    storage
 }

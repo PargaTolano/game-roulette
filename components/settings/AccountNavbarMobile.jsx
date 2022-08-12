@@ -35,13 +35,13 @@ const AccountNavbarMobile=()=>{
                         <li className={styles.menuLink}>
                             <Link href='/'>Exit</Link>
                         </li>
-                        <li 
-                            className={styles.menuLink}
-                            onClick={logout}
-                        >
-                            Logout
-                        </li>
                     </ul>
+                    <button 
+                        className={styles.logout}
+                        onClick={logout}
+                    >
+                        Logout
+                    </button>
                 </div>
             </div>
             <div className={styles.iconContainer}>

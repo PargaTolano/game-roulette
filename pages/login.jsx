@@ -13,9 +13,6 @@ import { withPublic } from '../hooks/routes';
 
 const Login = ({auth}) => {
     const { login, error }=auth;
-    console.log(auth);
-
-    const router = useRouter();
 
     const[state, setState] = useState({
         username: '',
@@ -34,9 +31,7 @@ const Login = ({auth}) => {
         e.preventDefault();
 
         try{
-            console.log('logging in...');
-            const user = await login(state.username, state.password);
-            console.log(user);
+            await login(state.username, state.password);
         } catch(e){
             alert(e)
         }
