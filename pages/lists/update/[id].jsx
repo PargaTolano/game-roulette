@@ -1,19 +1,19 @@
 import Head             from 'next/head';
-
 import React, { useEffect, useState } from 'react';
 
-import Navbar           from '../../components/Navbar';
+import Navbar           from '../../../components/Navbar';
 
-import styles           from '../../styles/CreateList.module.scss';
-import SearchBar        from '../../components/SearchBar';
+import SearchBar        from '../../../components/SearchBar';
 
 import {
     MdCheck,
     MdCancel
 } from 'react-icons/md';
-import createList from '../../db/createList';
-import { List } from '../../db/model/FirestoreList';
-import { auth } from '../../firebase/clientApp';
+import createList from '../../../db/createList';
+import { List } from '../../../db/model/FirestoreList';
+import { auth } from '../../../firebase/clientApp';
+
+import styles           from '../../../styles/CreateList.module.scss';
 
 const SearchCard = ({data, onClick})=>{
     return (

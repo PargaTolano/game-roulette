@@ -3,7 +3,6 @@ import axios from 'axios';
 let authData = null;
 
 const auth = async() => {
-
     try{
         if( authData !== null )
             return authData;

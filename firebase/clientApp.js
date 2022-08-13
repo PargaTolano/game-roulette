@@ -1,4 +1,4 @@
-import { getAuth, setPersistence }      from 'firebase/auth';
+import { browserSessionPersistence, getAuth, setPersistence }      from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from '@firebase/app';
 import * as firebase from 'firebase/app';

@@ -20,7 +20,7 @@ export const AuthProvider=props=>{
     const logout=()=>AuthService.logout();
 
     useEffect(()=>{
-        return AuthService.observe(user=>setUser(user||null));
+        return AuthService.observe(user=>setUser(user));
     },[]);
 
     const value={
