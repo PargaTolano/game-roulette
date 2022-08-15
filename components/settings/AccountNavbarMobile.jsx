@@ -1,6 +1,7 @@
-import Link from 'next/link';
 import React, { useState } from 'react';
 import useAuth from '../../hooks/auth';
+
+import ActiveLink from './ActiveLink';
 
 import {
     MdMenu,
@@ -26,15 +27,9 @@ const AccountNavbarMobile=()=>{
                 <div className={styles.menuContainer}>
                     <h2 className={styles.title}>Settings</h2>
                     <ul className={styles.linkList}>
-                        <li className={styles.menuLink}>
-                            <Link href='/account/profile'>Profile</Link>
-                        </li>
-                        <li className={styles.menuLink}>
-                            <Link href='/account/security'>Security</Link>
-                        </li>
-                        <li className={styles.menuLink}>
-                            <Link href='/'>Exit</Link>
-                        </li>
+                        <ActiveLink href='/account/profile'>Profile</ActiveLink>
+                        <ActiveLink href='/account/security'>Security</ActiveLink>
+                        <ActiveLink href='/'>Exit</ActiveLink>
                     </ul>
                     <button 
                         className={styles.logout}

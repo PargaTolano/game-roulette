@@ -1,0 +1,97 @@
+.toastContainer{
+    position:       fixed;
+    display:        flex;
+    bottom:         0;
+    left:           0;
+    width:          min(800px, 100vw);
+    flex-flow:      column nowrap;
+    z-index:        101;
+}
+
+@mixin toast {
+    position:           relative;
+    width:              100%;
+    color:              #AAAAAA;
+    background-color:   #1C1C1C;
+    border-bottom:      3px solid #333333;
+    transition:         .5s;
+    animation:          enter 0.4s;
+    vertical-align:     middle;
+}
+
+.infoToast{
+    @include toast;
+}
+
+.successToast{
+    @include toast;
+    background-color: darkseagreen;
+    color: #1C1C1C;
+}
+
+.warningToast{
+    @include toast;
+    background-color: #FAFA73;
+    color: #1C1C1C;
+}
+
+.errorToast{
+    @include toast;
+    background-color: var(--primary);
+    color: #1C1C1C;
+}
+
+.toastContent{
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    color:              inherit;
+    font-size:          1.2rem;
+}
+
+.timebar{
+    all:                        unset;
+    position:                   absolute;
+    display:                    inline-block;
+    bottom:                     0;
+    left:                       0;
+    width:                      0%;
+    height:                     0.5rem;
+    animation-fill-mode:        both;
+    background-color:           #EEEEEE;
+    animation-name:             timebar;
+    animation-timing-function:  linear;
+}
+
+
+.toastClose{
+    all:        unset;
+    position:   absolute;
+    top:        0;
+    right:      0;
+    margin:     0.5rem;
+    border:     none;
+    outline:    none;
+    font-size:  1.5rem;
+    cursor: pointer;
+}
+
+@keyframes enter {
+    from {
+        transform: translateY(25%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes timebar {
+    from{
+        width: 0%;        
+    }
+    to{ 
+        width: 100%;
+    }
+}

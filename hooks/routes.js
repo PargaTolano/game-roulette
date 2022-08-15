@@ -4,30 +4,22 @@ import useAuth from './auth';
 
 import PageLoading from '../components/loading/PageLoading';
 
+let timer=null;
 export const withPublic = (Component)=>{   
     return function WithPublic(props){
 
         const auth= useAuth();
-        const user=auth;
+        const {user}=auth;
         const router = useRouter();
 
-        const [timer, setTimer] = useState(null);
-
         function redirection(){
+            timer=null;
             router.replace('/');
         }
 
-        useState(()=>{
-            if(user===null && timer===null){
-                setTimer(setTimeout(redirection, 500));
-            } else {
-                if(timer!==null)
-                    clearTimeout(timer);
-                setTimer(null);
-            }
-        }, [user]);
-
-        if(auth.user){
+        if(user!==null){
+            if(!timer)
+                timer=setTimeout(redirection, 1000);
             return (
                 <PageLoading/>
             );
@@ -42,31 +34,24 @@ export const withPublic = (Component)=>{
 export const withProtected = (Component)=>{   
     return function WithProtected(props){
         const auth= useAuth();
-        const user = {auth};
+        const {user} = auth;
         const router = useRouter();
 
-        const [timer, setTimer] = useState(null);
-
         function redirection(){
+            timer=null;
             router.replace('/login');
         }
 
-        useState(()=>{
-            if(user===null && timer===null){
-                setTimer(setTimeout( redirection, 500));
-            } else {
-                if(timer!==null)
-                    clearTimeout(timer);
-                setTimer(null);
-            }
-        }, [user]);
-
-
-        if(!auth.user){
+        if(user===null){
+            if(!timer)
+                timer=setTimeout(redirection, 1000);
             return (
                 <PageLoading/>
             );
         }
+
+        if(timer)
+            clearTimeout(timer);
 
         return (
             <Component auth={auth} {...props}/>

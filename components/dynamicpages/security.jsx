@@ -10,9 +10,7 @@ import { AuthService } from '../../service/AuthService';
 import styles from '../../styles/SettingsSecurity.module.scss';
 import commonStyles from '../../styles/Common.module.scss';
 
-const Security = ({auth}) => {
-
-    const {user} = auth;
+const Security = () => {
 
     const [loading, setLoading]=useState(false);
     const [errorList, setErrorList]=useState([]);

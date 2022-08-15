@@ -1,18 +1,21 @@
 import Head                     from 'next/head';
 import Link                     from 'next/link';
-
 import React, { 
     useEffect, 
     useState 
 } from 'react';
+import useAuth                  from '../../hooks/auth';
+
+
+import Navbar                   from '../../components/Navbar';
+import CreateList               from '../../components/modal/CreateList';
 
 import { 
     MdAdd
 } from 'react-icons/md';
 
-import Navbar                   from '../../components/Navbar';
 
-import useAuth                  from '../../hooks/auth';
+import { ListService } from '../../service/ListService';
 
 import styles                   from '../../styles/Lists.module.scss';
 
@@ -38,16 +41,22 @@ const List = ({data})=>{
 
 const Lists = ({data}) => {
 
-    const user = useAuth();
-
+    const {user} = useAuth();
+    const [modalOpen, setModalOpen]= useState(false);
     const [lists, setLists] = useState([]);
 
     useEffect(()=>{
         if( user )
-            fetch(`/api/lists?id=${user.uid}`)
-                .then(res=>res.json())
+            ListService.getMyLists()
+                .then(x=>{
+                    console.log(x);
+                    return x
+                })
                 .then(setLists);
+
     },[user]);
+
+    const closeModal=()=>setModalOpen(x=>!x);
 
     return(
         <>
@@ -56,14 +65,19 @@ const Lists = ({data}) => {
             </Head>
             <Navbar/>
             <h1>Lists</h1>
+            { 
+                modalOpen && 
+                <CreateList closeModal={closeModal}/>
+            } 
             <div className={styles.cardContainer}>
-                <Link href='/lists/create'>
-                    <div className={styles.addList}>
-                        <div className={styles.listContent}>
-                            <MdAdd/>
-                        </div>
+                <div className={styles.addList}>
+                    <div 
+                        className={styles.listContent}
+                        onClick={closeModal}                    
+                    >
+                        <MdAdd/>
                     </div>
-                </Link>
+                </div>
                 {
                     lists.map( (v,i) =><List key={i} data={v}/>)
                 }
@@ -71,4 +85,5 @@ const Lists = ({data}) => {
         </>
     );
 };
+
 export default Lists;

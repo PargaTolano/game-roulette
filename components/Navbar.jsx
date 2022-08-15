@@ -1,5 +1,5 @@
 import Link     from 'next/link';
-import React, { useState }    from 'react';
+import React, { useEffect, useState }    from 'react';
 
 import {
     MdMenu,
@@ -19,9 +19,17 @@ const Navbar = () => {
         setIsShown
     }=useNavbar();
 
-    const {user} = useAuth();
+    const auth = useAuth();
 
-    const [img, setImg]= useState(user?.photoURL);
+    const {user} = auth;
+
+    const [img, setImg]= useState(defaultImage);
+
+    useEffect(()=>{
+        setImg(user?.photoURL ?? defaultImage);
+        console.log('yser data',user);
+    },[auth]);
+
 
     const onClickMenuButton= ()=> void setIsShown(x=>!x);
 

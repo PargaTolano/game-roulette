@@ -1,0 +1,54 @@
+@import './mixins.scss';
+
+.container{
+    display:            flex;
+    width:              100%;
+    height:             100%;
+    justify-content:    center;
+    align-items:        center;
+}
+
+.centered{
+    position: relative;
+}
+
+.logo{
+    width: 5rem;
+    animation: hue-rotate 1s infinite linear;
+}
+
+.text{
+    @include gradient-text;
+    position: absolute;
+    top: 100%;
+    color: white;
+    &:after{
+        content: "";
+        color: white;
+        animation: dots 1.5s infinite linear;
+    }
+}
+
+@keyframes hue-rotate {
+    to{
+        filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes dots {
+    from {
+        content:"";
+    }
+
+    33%{
+        content:"."
+    }
+
+    66%{
+        content:"..";
+    }
+
+    to{
+        content:"...";
+    }
+}

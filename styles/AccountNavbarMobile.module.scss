@@ -97,13 +97,28 @@
 }
 
 .menuLink{
-    color:      white;
+    display:            flex;
+    justify-content:    flex-end;
+    color:              #666666;
     font-size:  1rem;
     cursor:     pointer;
+    &[active="true"]{
+        color: #AAAAAA;
+    }
+
+    @media(max-width: 767px) {
+        justify-content:    flex-start;
+    }
 }
- .logout{
-    all:    unset;
+
+.logout{
+    all:                unset;
     margin: 0 0 1.125rem 1.125rem;
     color:  var(--primary);
+    cursor: pointer;
+
+    @media(max-width: 767px) {
+        text-align: left;
+    }
  }
  

@@ -2,25 +2,31 @@
 
 .container{
     position:           fixed;
-    top:                50%;
-    left:               50%;
-    width:              min(100vw, 600px);
-    height:             min(100vh, 400px);
+    display:            flex;
+    top: 0;
+    left: 0;
+    width:              100vw;
+    height:             100vh;
     padding:            1rem;
-    border-radius:      1rem;
-    transform:          translate(-50%,-50%);
-    background-color:   #333333;
+    justify-content:    center;
+    align-items:        center;
+    background-image: linear-gradient(#333333, #1C1C1C);
+    z-index:    100;
 }
 
 .closeButton{
-
+    all:        unset;
+    position:   absolute;
+    top:        0;
+    right:      0;
+    margin:     1rem;
+    color:      #AAAAAA;
+    font-size:  2rem;
 }
 
 .form{
     all:                unset;
     display:            flex;
-    width:              100%;
-    height:             100%;
     flex-flow:          column nowrap;
     justify-content:    space-between;
     align-items:        center;
@@ -29,7 +35,8 @@
 .title{
     color:          white;
     text-align:     center;
-    text-transform: capitalize;
+    text-transform: lowercase;
+    font-weight:    lighter;
 }
 
 .input{
@@ -46,13 +53,27 @@
     }
 }
 
+.buttonContainer{
+    display: flex;
+    gap: 1ch;
+}
+
 .button{
     display:            inline-block;
     margin-top:         2rem;
-    padding:            0.5rem 2rem;
-    border:             1px solid #AAAAAA;
+    margin-bottom:      1rem;
+    border:             none;
     background-color:   transparent;
+    color:              #AAAAAA;
+    font-size:          1rem;
+    transition:         .5s;
+    cursor:             pointer;
+    text-transform:     uppercase;
     &:hover{
-        background-color: #AAAAAA;
+        filter: brightness(1.4);
+    }
+
+    &[create="true"]{
+        color: var(--secondary);
     }
 }

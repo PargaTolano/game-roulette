@@ -17,9 +17,24 @@
     border-right:       2px solid #AAAAAA;
     flex-flow:          column nowrap;
     justify-content:    flex-start;
-    align-items:        flex-end;
+    align-items:        stretch;
     list-style:         none;
     gap:                1rem;
+}
+
+.logout{
+    text-align:     right;
+    color:          var(--primary);
+    cursor:         pointer;
+    &:before{
+        display:            block;
+        content:            "";
+        width:              100%;
+        height:             1px;
+        margin:             0.125rem;
+        background-color:   #AAAAAA;
+    }
+
 }
 
 @mixin settings-navbar-link{

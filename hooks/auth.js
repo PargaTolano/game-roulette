@@ -12,8 +12,7 @@ export const AuthProvider=props=>{
 
 
     const login= async(email,password)=>{
-        const {error, user}= await AuthService.login(email,password);
-        setUser(user??null);
+        const {error}= await AuthService.login(email,password);
         setError(error);
     };
     
